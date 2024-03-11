@@ -27,7 +27,7 @@ export const ProjectComponentSidebar = ({
       <hr className="my-4" />
       <div className="flex flex-col flex-grow overflow-hidden">
         <p className="text-lg font-medium">Posts</p>
-        <div className="flex-grow overflow-auto space-y-2 pr-4">
+        <div className="flex-grow overflow-auto space-y-2 pr-4 my-6">
           {project.posts.map((post) => (
             <div
               key={post.id}
@@ -49,7 +49,7 @@ export const ProjectComponentSidebar = ({
           navigator.clipboard.writeText(project.project_key);
           toast.success("Copied project id.");
         }}
-        className="mt-6 flex gap-4 items-center bg-black rounded-lg text-white p-3 hover:bg-slate-900 transition cursor-pointer text-sm"
+        className="flex gap-4 items-center bg-black rounded-lg text-white p-3 hover:bg-slate-900 transition cursor-pointer text-sm"
       >
         <IoCopyOutline />
         <p>Copy project id</p>
