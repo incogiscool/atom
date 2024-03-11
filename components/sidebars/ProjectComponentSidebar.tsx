@@ -47,12 +47,12 @@ export const ProjectComponentSidebar = ({
       <div
         onClick={() => {
           navigator.clipboard.writeText(project.project_key);
-          toast.success("Copied project id.");
+          toast.success("Copied project key.");
         }}
         className="flex gap-4 items-center bg-black rounded-lg text-white p-3 hover:bg-slate-900 transition cursor-pointer text-sm"
       >
         <IoCopyOutline />
-        <p>Copy project id</p>
+        <p>Copy project key</p>
       </div>
     </div>
   );
