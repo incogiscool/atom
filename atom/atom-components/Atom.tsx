@@ -5,7 +5,7 @@ import axios from "axios";
 import { ApiResponse } from "@/app/api/auth/signup/route";
 import { Post } from "@/lib/types";
 import { baseAPIRoute } from "@/lib/contants";
-import { getPost } from "../lib/server/getPost";
+import { getPost } from "../lib/client/getPost";
 
 /*
 

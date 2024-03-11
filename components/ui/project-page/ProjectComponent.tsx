@@ -28,8 +28,11 @@ const projectFormSchema = z.object({
 export type ProjectFormInputs = z.infer<typeof projectFormSchema>;
 
 export const ProjectComponent = ({ project }: { project: Project }) => {
-  const [openedPostId, setOpenedPostId] = useState(project.posts[0].id);
-  const openedPost = project.posts.find((post) => post.id === openedPostId);
+  const [openedPostId, setOpenedPostId] = useState(
+    project.posts[0]?.id || null
+  );
+  const openedPost =
+    project.posts.find((post) => post.id === openedPostId) || null;
 
   const form = useForm<ProjectFormInputs>({
     resolver: zodResolver(projectFormSchema),
@@ -57,70 +60,74 @@ export const ProjectComponent = ({ project }: { project: Project }) => {
               // MAKE SURE UPDATEPOST FUNCTION ONLY TAKES IN BODY, KEYWRODS, AUTHRO, TITLE
               //ARGUMENTS
             }
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-6"
-              >
-                <p className="text-sm text-slate-500">id: {openedPost?.id}</p>
-                <FormField
-                  control={form.control}
-                  name="title"
-                  render={({ field }) => (
-                    <FormItem className="w-full">
-                      <FormLabel>Title</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Title" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="author"
-                  render={({ field }) => (
-                    <FormItem className="w-full">
-                      <FormLabel>Author</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Author" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="body"
-                  render={({ field }) => (
-                    <FormItem className="w-full flex flex-col">
-                      <FormLabel>Body</FormLabel>
-                      <FormControl>
-                        <textarea
-                          {...field}
-                          className="border rounded-md p-2 h-[250px]"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="keywords"
-                  render={({ field }) => (
-                    <FormItem className="w-full">
-                      <FormLabel>Keywords (seperate with a comma)</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Keywords" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button>Save changes</Button>
-              </form>
-            </Form>
+            {openedPostId ? (
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-6"
+                >
+                  <p className="text-sm text-slate-500">id: {openedPost?.id}</p>
+                  <FormField
+                    control={form.control}
+                    name="title"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Title</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Title" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="author"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Author</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Author" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="body"
+                    render={({ field }) => (
+                      <FormItem className="w-full flex flex-col">
+                        <FormLabel>Body</FormLabel>
+                        <FormControl>
+                          <textarea
+                            {...field}
+                            className="border rounded-md p-2 h-[250px]"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="keywords"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Keywords (seperate with a comma)</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Keywords" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button>Save changes</Button>
+                </form>
+              </Form>
+            ) : (
+              "No opened post."
+            )}
           </div>
         </div>
       </div>

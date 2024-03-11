@@ -17,6 +17,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
+import { useUserDocument } from "@/state/UserDocumentState";
 
 const loginFormSchema = z.object({
   email: z.string().email("Please enter a valid email."),
@@ -26,6 +27,8 @@ const loginFormSchema = z.object({
 export type LoginFormInputs = z.infer<typeof loginFormSchema>;
 
 export const LoginForm = () => {
+  const { setUserDocument } = useUserDocument();
+
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -44,7 +47,7 @@ export const LoginForm = () => {
     try {
       const userDocument = await loginUser(email, password);
 
-      //Set user global state
+      setUserDocument(userDocument);
 
       router.push("/app");
       setIsLoading(false);

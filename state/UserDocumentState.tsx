@@ -1,12 +1,12 @@
 import { UserDocument } from "@/lib/types";
 import { create } from "zustand";
 
-export type UserDocumentStore = {
+interface UserDocumentState {
   userDocument: UserDocument | null;
   setUserDocument: (userDocument: UserDocument) => void;
-};
+}
 
-export const useUserDocumentStore = create<UserDocumentStore>()((set) => ({
+export const useUserDocument = create<UserDocumentState>()((set) => ({
   userDocument: null,
   setUserDocument: (userDocument: UserDocument) => set({ userDocument }),
 }));

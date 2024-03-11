@@ -5,7 +5,17 @@ meta {
 }
 
 post {
-  url: 
-  body: none
+  url: http://localhost:3000/api/projects/create
+  body: json
   auth: none
+}
+
+headers {
+  cookie: auth_session={{session_id}}
+}
+
+body:json {
+  {
+    "title": "Test 123"
+  }
 }

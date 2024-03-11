@@ -1,6 +1,6 @@
 "use server";
 import { Atom } from "@/atom/atom-components/Atom";
-import { generatePostMetadata } from "@/atom/lib/server/generatePostMetadata";
+import { generatePostMetadata } from "@/atom/lib/client/generatePostMetadata";
 
 export type BlogParams = { params: { id: string } };
 

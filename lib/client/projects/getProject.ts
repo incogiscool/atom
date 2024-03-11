@@ -1,148 +1,22 @@
+import { ApiResponse } from "@/app/api/auth/signup/route";
+import { baseAPIRoute } from "@/lib/contants";
 import { Project } from "@/lib/types";
+import axios from "axios";
+import { cookies } from "next/headers";
 
-export const getProject = async (projectId: string) => {
-  // add fetch logic
+export const getProject = async (project_id: string) => {
+  const res = (
+    await axios.get<ApiResponse<Project>>(
+      `${baseAPIRoute}/projects/get/single?project_id=${project_id}`,
+      {
+        headers: {
+          Cookie: cookies().toString(),
+        },
+      }
+    )
+  ).data;
 
-  return {
-    _id: "project1",
-    title: "my first project",
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    project_key: "123123",
-    creator_uid: "asdkjno123j",
-    posts: [
-      {
-        id: "doc1",
-        creator_uid: "user",
-        title: "document aasd asd asd asd asdasd asd asdas asd as das d das",
-        body: "###hello\n#test\n #asd",
-        author: "test authro",
-        keywords: ["test", "testing"],
-        image: null,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        id: "doc2",
-        creator_uid: "user",
-        title: "document 2",
-        body: "###hello\n#test\n #asd",
-        author: "test authro",
-        keywords: ["test", "testing"],
-        image: null,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        id: "doc3",
-        creator_uid: "user",
-        title: "document 3",
-        body: "###hello\n#test\n #asd",
-        author: "test authro",
-        keywords: ["test", "testing"],
-        image: null,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        id: "doc4",
-        creator_uid: "user",
-        title: "document aasd asd asd asd asdasd asd asdas asd as das d das",
-        body: "###hello\n#test\n #asd",
-        author: "test authro",
-        keywords: ["test", "testing"],
-        image: null,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        id: "doc5",
-        creator_uid: "user",
-        title: "document 2",
-        body: "###hello\n#test\n #asd",
-        author: "test authro",
-        keywords: ["test", "testing"],
-        image: null,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        id: "doc6",
-        creator_uid: "user",
-        title: "document 3",
-        body: "###hello\n#test\n #asd",
-        author: "test authro",
-        keywords: ["test", "testing"],
-        image: null,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        id: "doc7",
-        creator_uid: "user",
-        title: "document aasd asd asd asd asdasd asd asdas asd as das d das",
-        body: "###hello\n#test\n #asd",
-        author: "test authro",
-        keywords: ["test", "testing"],
-        image: null,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        id: "doc8",
-        creator_uid: "user",
-        title: "document 2",
-        body: "###hello\n#test\n #asd",
-        author: "test authro",
-        keywords: ["test", "testing"],
-        image: null,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        id: "doc9",
-        creator_uid: "user",
-        title: "document 3",
-        body: "###hello\n#test\n #asd",
-        author: "test authro",
-        keywords: ["test", "testing"],
-        image: null,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        id: "doc10",
-        creator_uid: "user",
-        title: "document aasd asd asd asd asdasd asd asdas asd as das d das",
-        body: "###hello\n#test\n #asd",
-        author: "test authro",
-        keywords: ["test", "testing"],
-        image: null,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        id: "doc11",
-        creator_uid: "user",
-        title: "document 2",
-        body: "###hello\n#test\n #asd",
-        author: "test authro",
-        keywords: ["test", "testing"],
-        image: null,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        id: "doc12",
-        creator_uid: "user",
-        title: "document 3",
-        body: "###hello\n#test\n #asd",
-        author: "test authro",
-        keywords: ["test", "testing"],
-        image: null,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-    ],
-  };
+  if (!res.success) throw new Error(res.message || "Unknown error.");
+
+  return res.response;
 };

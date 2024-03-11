@@ -1,0 +1,20 @@
+meta {
+  name: Get Project
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:3000/api/projects/get/single
+  body: none
+  auth: none
+}
+
+query {
+  ~project_id: 123
+}
+
+headers {
+  ~Authorization: Bearer {{project_key}}
+  ~cookie: auth_session={{session_id}}
+}

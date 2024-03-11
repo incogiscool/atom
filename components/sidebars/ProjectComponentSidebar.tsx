@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 import toast from "react-hot-toast";
 import { IoChevronBackOutline, IoCopyOutline } from "react-icons/io5";
+import { Button } from "../ui/button";
 
 export const ProjectComponentSidebar = ({
   project,
@@ -10,9 +11,11 @@ export const ProjectComponentSidebar = ({
   setSelectedPostId,
 }: {
   project: Project;
-  selectedPostId: string;
-  setSelectedPostId: Dispatch<SetStateAction<string>>;
+  selectedPostId: string | null;
+  setSelectedPostId: Dispatch<SetStateAction<string | null>>;
 }) => {
+  function handleCreateNewPost() {}
+
   return (
     <div className="flex flex-col h-screen max-h-screen w-[325px] p-4 border-r">
       <div className="flex-shrink-0 flex gap-4 items-center">
@@ -44,15 +47,21 @@ export const ProjectComponentSidebar = ({
           ))}
         </div>
       </div>
-      <div
-        onClick={() => {
-          navigator.clipboard.writeText(project.project_key);
-          toast.success("Copied project key.");
-        }}
-        className="flex gap-4 items-center bg-black rounded-lg text-white p-3 hover:bg-slate-900 transition cursor-pointer text-sm"
-      >
-        <IoCopyOutline />
-        <p>Copy project key</p>
+      <div className="w-full space-y-4">
+        <Button
+          variant={"outline"}
+          onClick={() => {
+            navigator.clipboard.writeText(project.project_key);
+            toast.success("Copied project key.");
+          }}
+          className="flex gap-4 items-center w-full text-sm"
+        >
+          <IoCopyOutline />
+          <p>Copy project key</p>
+        </Button>
+        <Button onClick={handleCreateNewPost} className="w-full">
+          Create new post
+        </Button>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 "use server";
 import Link from "next/link";
-import { getAllPosts } from "../lib/server/getAllPosts";
+import { getAllPosts } from "../lib/client/getAllPosts";
 
 export const AtomPage = async ({ apiKey }: { apiKey: string }) => {
   const res = await getAllPosts(apiKey);
