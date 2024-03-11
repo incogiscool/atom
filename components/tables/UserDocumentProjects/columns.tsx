@@ -54,7 +54,7 @@ export const columns: ColumnDef<UserDocumentProjects>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
               onClick={handleDeleteProject}
-              className="text-red-600"
+              className="text-red-600 cursor-pointer"
             >
               Delete Project
             </DropdownMenuItem>
