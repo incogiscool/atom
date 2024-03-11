@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Atom API",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
