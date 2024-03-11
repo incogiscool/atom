@@ -3,15 +3,15 @@ import { navOptions, plans } from "./contants";
 export type UserCredentials = {
   email: string;
   password_hash: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
   _id: string;
 };
 
 export type Post = {
-  createdAt: string;
+  createdAt: Date;
   id: string;
-  updatedAt: string;
+  updatedAt: Date;
   title: string;
   author: string;
   body: string;
@@ -25,12 +25,14 @@ export type Plan = (typeof plans)[number];
 export type UserDocumentProjects = {
   id: string;
   title: string;
-  createdAt: string;
-  updatedAt: string;
-  creator: {
-    uid: string;
-    first_name: string;
-  };
+  createdAt: Date;
+  updatedAt: Date;
+  creator: UserDocumnetProjectsCreator;
+};
+
+export type UserDocumnetProjectsCreator = {
+  uid: string;
+  email: string;
 };
 
 export type Project = {
@@ -39,16 +41,16 @@ export type Project = {
   posts: Post[];
   project_key: string;
   creator_uid: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type UserDocument = {
   _id: string;
   first_name: string;
   last_name: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
   projects: UserDocumentProjects[];
   email: string;
   plan: Plan;

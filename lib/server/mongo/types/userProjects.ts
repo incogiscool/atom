@@ -21,10 +21,6 @@ export const postSchema = new Schema<Post>(
       type: String,
       required: false,
     },
-    _id: {
-      type: String,
-      required: true,
-    },
     creator_uid: {
       type: String,
       required: true,
@@ -33,8 +29,12 @@ export const postSchema = new Schema<Post>(
       type: [String],
       required: true,
     },
+    id: {
+      type: String,
+      required: true,
+    },
   },
-  { timestamps: true }
+  { timestamps: true, _id: false }
 );
 
 export const projectsSchema = new Schema<Project>(

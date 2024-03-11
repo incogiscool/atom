@@ -34,7 +34,7 @@ export const columns: ColumnDef<UserDocumentProjects>[] = [
     header: "Updated",
   },
   {
-    accessorKey: "creator.first_name",
+    accessorKey: "creator.email",
     header: "Creator",
   },
   {

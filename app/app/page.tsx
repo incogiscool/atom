@@ -11,31 +11,31 @@ const AppPage = () => {
       id: "test1",
       title: "Test 1",
       creator: {
-        first_name: "Adam",
+        email: "adam546944@gmail.com",
         uid: "123",
       },
-      createdAt: "2024-03-10T09:22:28.942+00:00",
-      updatedAt: "2024-03-10T09:22:28.942+00:00",
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     {
       id: "test2",
       title: "Test 2",
       creator: {
-        first_name: "Adam",
+        email: "adam546944@gmail.com",
         uid: "123",
       },
-      createdAt: "2024-03-10T09:22:28.942+00:00",
-      updatedAt: "2024-03-10T09:22:28.942+00:00",
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     {
       id: "test3",
       title: "Test 3",
       creator: {
-        first_name: "Adam",
+        email: "adam546944@gmail.com",
         uid: "123",
       },
-      createdAt: "2024-03-10T09:22:28.942+00:00",
-      updatedAt: "2024-03-10T09:22:28.942+00:00",
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
   ];
 
