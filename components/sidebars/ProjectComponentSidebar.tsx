@@ -30,11 +30,11 @@ export const ProjectComponentSidebar = ({
         <div className="flex-grow overflow-auto space-y-2 pr-4 my-6">
           {project.posts.map((post) => (
             <div
-              key={post._id}
+              key={post.id}
               className={`p-2 ${
-                post._id === selectedPostId && "bg-black text-white"
+                post.id === selectedPostId && "bg-black text-white"
               } hover:bg-slate-800 hover:text-white transition rounded-lg cursor-pointer`}
-              onClick={() => setSelectedPostId(post._id)}
+              onClick={() => setSelectedPostId(post.id)}
             >
               <p>{post.title.slice(0, 20) + "..."}</p>
               <p className="text-sm">

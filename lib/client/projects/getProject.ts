@@ -4,7 +4,7 @@ export const getProject = async (projectId: string) => {
   // add fetch logic
 
   return {
-    id: "project1",
+    _id: "project1",
     title: "my first project",
     createdAt: new Date().toString(),
     updatedAt: new Date().toString(),

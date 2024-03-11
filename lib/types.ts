@@ -10,7 +10,7 @@ export type UserCredentials = {
 
 export type Post = {
   createdAt: string;
-  _id: string;
+  id: string;
   updatedAt: string;
   title: string;
   author: string;
