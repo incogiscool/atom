@@ -16,10 +16,10 @@ export const userCredentialsSchema = new Schema<UserCredentials>(
       type: String,
       required: true,
     },
-    uid: {
+    _id: {
       type: String,
       required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true, _id: false }
 );

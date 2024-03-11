@@ -3,19 +3,19 @@ import { navOptions, plans } from "./contants";
 export type UserCredentials = {
   email: string;
   password_hash: string;
-  uid: string;
   createdAt: string;
   updatedAt: string;
+  _id: string;
 };
 
 export type Post = {
   createdAt: string;
+  _id: string;
   updatedAt: string;
   title: string;
   author: string;
   body: string;
   image: string | null;
-  id: string;
   creator_uid: string;
   keywords: string[];
 };
@@ -35,7 +35,7 @@ export type UserDocumentProjects = {
 
 export type Project = {
   title: string;
-  id: string;
+  _id: string;
   posts: Post[];
   project_key: string;
   creator_uid: string;
@@ -44,7 +44,7 @@ export type Project = {
 };
 
 export type UserDocument = {
-  uid: string;
+  _id: string;
   first_name: string;
   last_name: string;
   createdAt: string;

@@ -4,8 +4,7 @@ import { cache } from "react";
 import type { Session, User } from "lucia";
 import { lucia } from "../init";
 
-export const validateRequest =
-  // cache(
+export const validateRequest = cache(
   async (): Promise<
     { user: User; session: Session } | { user: null; session: null }
   > => {
@@ -16,6 +15,8 @@ export const validateRequest =
         session: null,
       };
     }
+
+    console.log(sessionId);
 
     const result = await lucia.validateSession(sessionId);
     // next.js throws when you attempt to set cookie when rendering page
@@ -38,5 +39,5 @@ export const validateRequest =
       }
     } catch {}
     return result;
-  };
-// );
+  }
+);

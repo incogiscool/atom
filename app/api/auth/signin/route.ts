@@ -34,13 +34,13 @@ export const POST = async (request: NextRequest) => {
     if (!isPasswordSame) throw new Error("Password is incorrect.");
 
     const userDocument = await UserDocumentsRef.findOne({
-      uid: emailCredentialDoc.uid,
+      _id: emailCredentialDoc._id,
     });
 
     if (!userDocument)
       throw new Error("User document does not exist. Please contact support.");
 
-    const session = await lucia.createSession(userDocument.uid, {});
+    const session = await lucia.createSession(userDocument._id, {});
     const sessionCookie = lucia.createSessionCookie(session.id);
     cookies().set(
       sessionCookie.name,

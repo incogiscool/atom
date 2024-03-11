@@ -6,7 +6,8 @@ export const validateRequestFetchUser = async () => {
 
   if (!user) throw new Error("Invalid session.");
 
-  const userDoc = await UserDocumentsRef.findOne({ uid: user.id });
+  console.log(user);
+  const userDoc = await UserDocumentsRef.findOne({ _id: user.id });
 
   if (!userDoc) throw new Error("Error fetching user document.");
 

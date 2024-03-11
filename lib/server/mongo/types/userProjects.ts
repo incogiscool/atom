@@ -21,7 +21,7 @@ export const postSchema = new Schema<Post>(
       type: String,
       required: false,
     },
-    id: {
+    _id: {
       type: String,
       required: true,
     },
@@ -43,7 +43,7 @@ export const projectsSchema = new Schema<Project>(
       type: String,
       required: true,
     },
-    id: {
+    _id: {
       type: String,
       required: true,
     },
@@ -60,5 +60,5 @@ export const projectsSchema = new Schema<Project>(
       required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true, _id: false }
 );

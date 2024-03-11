@@ -70,6 +70,7 @@ export const POST = async (request: NextRequest) => {
             password_hash: hashedAndSaltedPassword,
             email,
             uid,
+            _id: uid,
           },
         ],
         { session: mongooseSession }
@@ -82,7 +83,7 @@ export const POST = async (request: NextRequest) => {
             plan: "free",
             first_name: first_name.trim(),
             last_name: last_name.trim(),
-            uid,
+            _id: uid,
             projects: [],
           },
         ],

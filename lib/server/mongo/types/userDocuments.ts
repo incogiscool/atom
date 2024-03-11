@@ -17,7 +17,7 @@ export const userDocumentProjectsSchema = new Schema<UserDocumentProjects>({
 
 export const userDocumentsSchema = new Schema<UserDocument>(
   {
-    uid: {
+    _id: {
       type: String,
       required: true,
     },
@@ -43,5 +43,5 @@ export const userDocumentsSchema = new Schema<UserDocument>(
       required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true, _id: false }
 );
