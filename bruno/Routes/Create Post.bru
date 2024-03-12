@@ -1,0 +1,24 @@
+meta {
+  name: Create Post
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/api/posts/create
+  body: json
+  auth: none
+}
+
+headers {
+  cookie: auth_session={{session_id}}
+}
+
+body:json {
+  {
+    "title": "post 1 omak",
+    "author": "Adam El Taha",
+    "body": "###Hello\n#omak",
+    "project_id": "edb572ae-5d92-4795-b7a5-43f663d2b955"
+  }
+}

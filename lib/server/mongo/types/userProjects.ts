@@ -27,7 +27,7 @@ export const postSchema = new Schema<Post>(
     },
     keywords: {
       type: [String],
-      required: true,
+      required: false,
     },
     id: {
       type: String,

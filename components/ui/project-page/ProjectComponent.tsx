@@ -23,6 +23,7 @@ const projectFormSchema = z.object({
   body: z.string().min(1, "Title cannot be empty."),
   //DO KEYWORDS ZOD TYPE AS ARRAY
   keywords: z.any(),
+  image: z.any(),
 });
 
 export type ProjectFormInputs = z.infer<typeof projectFormSchema>;
@@ -117,6 +118,19 @@ export const ProjectComponent = ({ project }: { project: Project }) => {
                         <FormLabel>Keywords (seperate with a comma)</FormLabel>
                         <FormControl>
                           <Input placeholder="Keywords" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="image"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Image</FormLabel>
+                        <FormControl>
+                          <Input type="file" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

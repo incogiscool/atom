@@ -30,7 +30,7 @@ export const POST = async (request: Request) => {
     if (!user) throw new Error("Invalid session. Please sign in.");
 
     const project_key = generateProjectKey();
-    const post_id = uuidv4();
+    const project_id = uuidv4();
 
     const mongooseSession = await mongoose.startSession();
 
@@ -40,7 +40,7 @@ export const POST = async (request: Request) => {
       const _project = await ProjectsRef.create(
         [
           {
-            _id: post_id,
+            _id: project_id,
             title,
             posts: [],
             project_key,
@@ -58,7 +58,7 @@ export const POST = async (request: Request) => {
           $push: {
             projects: {
               title,
-              id: post_id,
+              id: project_id,
               createdAt: project.createdAt,
               updatedAt: project.updatedAt,
               creator: {

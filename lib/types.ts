@@ -17,7 +17,7 @@ export type Post = {
   body: string;
   image: string | null;
   creator_uid: string;
-  keywords: string[];
+  keywords?: string[];
 };
 
 export type Plan = (typeof plans)[number];
