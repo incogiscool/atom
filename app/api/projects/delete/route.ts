@@ -1,7 +1,11 @@
 import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 import { NextRequest, NextResponse } from "next/server";
 import { ApiResponse } from "../../auth/signup/route";
-import { ProjectsRef, UserDocumentsRef } from "@/lib/server/mongo/init";
+import {
+  ProjectsRef,
+  UserDocumentsRef,
+  connectToDatabase,
+} from "@/lib/server/mongo/init";
 import mongoose from "mongoose";
 
 export type DeleteProjectRequestParams = {
@@ -10,6 +14,8 @@ export type DeleteProjectRequestParams = {
 
 export const DELETE = async (request: NextRequest) => {
   try {
+    await connectToDatabase();
+
     const { user } = await validateRequest();
     const project_id = request.nextUrl.searchParams.get("project_id");
 

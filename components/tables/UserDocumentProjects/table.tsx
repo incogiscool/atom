@@ -26,13 +26,13 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<UserDocumentProjects, TValue>) {
+  const router = useRouter();
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
-
-  const router = useRouter();
 
   return (
     <div className="rounded-md border">
@@ -61,16 +61,14 @@ export function DataTable<TData, TValue>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
-                link={`/app/projects/${row.original.id}`}
-                router={router}
               >
                 {row.getVisibleCells().map((cell) => {
                   return (
                     <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}{" "}
+                      {flexRender(cell.column.columnDef.cell, {
+                        ...cell.getContext(),
+                        router,
+                      })}
                     </TableCell>
                   );
                 })}

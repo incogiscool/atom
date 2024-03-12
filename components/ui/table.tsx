@@ -4,11 +4,6 @@ import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
-const handleRowClick = (link?: string, router?: AppRouterInstance) => {
-  if (!link || !router) return;
-  router.push(link);
-};
-
 const Table = React.forwardRef<
   HTMLTableElement,
   React.HTMLAttributes<HTMLTableElement>
@@ -60,17 +55,12 @@ TableFooter.displayName = "TableFooter";
 
 const TableRow = React.forwardRef<
   HTMLTableRowElement,
-  React.HTMLAttributes<HTMLTableRowElement> & {
-    link?: string;
-    router?: AppRouterInstance;
-  }
->(({ className, link, router, ...props }, ref) => (
+  React.HTMLAttributes<HTMLTableRowElement>
+>(({ className, ...props }, ref) => (
   <tr
     ref={ref}
-    onClick={() => handleRowClick(link, router)}
     className={cn(
-      "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
-      link && "cursor-pointer",
+      "border-b transition-colors data-[state=selected]:bg-muted",
       className
     )}
     {...props}

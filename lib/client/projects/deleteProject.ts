@@ -4,11 +4,11 @@ import { Project } from "@/lib/types";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-export const createProject = async (title: string) => {
+export const deleteProject = async (project_id: string) => {
   const res = (
-    await axios.post<ApiResponse<Project>>(`${baseAPIRoute}/projects/create`, {
-      title,
-    })
+    await axios.delete<ApiResponse<Project>>(
+      `${baseAPIRoute}/projects/delete?project_id=${project_id}`
+    )
   ).data;
 
   if (!res.success) throw new Error(res.message || "Unkown error.");
