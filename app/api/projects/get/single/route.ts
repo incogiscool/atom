@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { validateRequest } from "@/lib/server/lucia/functions/validaterequest";
+import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 import { ProjectsRef, connectToDatabase } from "@/lib/server/mongo/init";
 import { ApiResponse } from "@/app/api/auth/signup/route";
 import { Project } from "@/lib/types";

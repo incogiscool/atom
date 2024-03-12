@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ApiResponse } from "../../signup/route";
-import { validateRequest } from "@/lib/server/lucia/functions/validaterequest";
+import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 import { UserDocumentsRef } from "@/lib/server/mongo/init";
 import { UserDocument } from "@/lib/types";
 

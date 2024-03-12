@@ -5,7 +5,7 @@ import {
   UserDocumentsRef,
   connectToDatabase,
 } from "@/lib/server/mongo/init";
-import { validateRequest } from "@/lib/server/lucia/functions/validaterequest";
+import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 import { generateProjectKey } from "@/lib/server/utils/generateProjectKey";
 import { v4 as uuidv4 } from "uuid";
 import mongoose from "mongoose";

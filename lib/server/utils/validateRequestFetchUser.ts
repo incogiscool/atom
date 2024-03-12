@@ -1,4 +1,4 @@
-import { validateRequest } from "../lucia/functions/validaterequest";
+import { validateRequest } from "../lucia/functions/validateRequest";
 import { UserDocumentsRef } from "../mongo/init";
 
 // CONNECT TO MONGODB BEFORE USING FUNCTION
