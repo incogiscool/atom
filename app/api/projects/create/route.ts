@@ -37,13 +37,20 @@ export const POST = async (request: Request) => {
     let project: Project | null = null;
 
     await mongooseSession.withTransaction(async () => {
-      project = await ProjectsRef.create({
-        _id: post_id,
-        title,
-        posts: [],
-        project_key,
-        creator_uid: user.id,
-      });
+      const _project = await ProjectsRef.create(
+        [
+          {
+            _id: post_id,
+            title,
+            posts: [],
+            project_key,
+            creator_uid: user.id,
+          },
+        ],
+        { session: mongooseSession }
+      );
+
+      project = _project[0];
 
       await UserDocumentsRef.updateOne(
         { _id: user.id },
@@ -60,7 +67,8 @@ export const POST = async (request: Request) => {
               },
             },
           },
-        }
+        },
+        { session: mongooseSession }
       );
     });
 
