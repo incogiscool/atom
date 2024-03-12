@@ -7,7 +7,7 @@ type ProjectPageParams = {
   };
 };
 
-const ProjectPage = async ({ params }: ProjectPageParams) => {
+const Page = async ({ params }: ProjectPageParams) => {
   const { success, message, response: project } = await getProject(params.id);
 
   return (
@@ -23,4 +23,4 @@ const ProjectPage = async ({ params }: ProjectPageParams) => {
   );
 };
 
-export default ProjectPage;
+export default Page;

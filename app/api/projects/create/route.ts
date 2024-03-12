@@ -20,7 +20,7 @@ export const POST = async (request: Request) => {
   try {
     const { title } = (await request.json()) as CreateProjectRequest;
 
-    if (!title || title.length > projectTitleMaxLength)
+    if (!title || title.length > projectTitleMaxLength || title === "")
       throw new Error("Invalid title.");
 
     await connectToDatabase();
