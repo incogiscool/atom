@@ -5,12 +5,12 @@ import {
   UserDocumentsRef,
   connectToDatabase,
 } from "@/lib/server/mongo/init";
-import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 import { generateProjectKey } from "@/lib/server/utils/generateProjectKey";
 import { v4 as uuidv4 } from "uuid";
 import mongoose from "mongoose";
 import { projectTitleMaxLength } from "@/lib/contants";
 import { Project } from "@/lib/types";
+import { validateRequest } from "@/lib/server/lucia/functions/validaterequest";
 
 export type CreateProjectRequest = {
   title: string;

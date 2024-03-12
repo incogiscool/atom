@@ -1,7 +1,6 @@
 "use server";
 import { ProjectComponent } from "@/components/ui/project-page/ProjectComponent";
 import { getProject } from "@/lib/client/projects/getProject";
-import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 import Link from "next/link";
 import { HiArrowLongLeft } from "react-icons/hi2";
 
