@@ -8,7 +8,6 @@
 
 # testing
 /coverage
-/bruno/environments
 
 # next.js
 /.next/
