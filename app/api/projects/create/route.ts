@@ -27,7 +27,7 @@ export const POST = async (request: Request) => {
 
     const { user } = await validateRequest();
 
-    if (!user) throw new Error("Invalid session.");
+    if (!user) throw new Error("Invalid session. Please sign in.");
 
     const project_key = generateProjectKey();
     const post_id = uuidv4();

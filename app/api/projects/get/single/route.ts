@@ -25,7 +25,7 @@ export const GET = async (request: NextRequest) => {
       const project_id = request.nextUrl.searchParams.get("project_id");
       const { user } = await validateRequest();
 
-      if (!user) throw new Error("Invalid session.");
+      if (!user) throw new Error("Invalid session. Please sign in.");
       if (!project_id) throw new Error("Invalid project id.");
 
       const project = await ProjectsRef.findOne({ _id: project_id });

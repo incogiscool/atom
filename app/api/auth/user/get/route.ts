@@ -3,12 +3,13 @@ import { ApiResponse } from "../../signup/route";
 import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 import { UserDocumentsRef } from "@/lib/server/mongo/init";
 import { UserDocument } from "@/lib/types";
+import { redirect } from "next/navigation";
 
 export const GET = async (request: NextRequest) => {
   try {
     const { user } = await validateRequest();
 
-    if (!user) throw new Error("Invalid session.");
+    if (!user) throw new Error("Invalid session. Please sign in.");
 
     const data = await UserDocumentsRef.findOne({ _id: user.id });
 
