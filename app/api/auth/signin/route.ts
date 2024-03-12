@@ -38,7 +38,9 @@ export const POST = async (request: NextRequest) => {
     });
 
     if (!userDocument)
-      throw new Error("User document does not exist. Please contact support.");
+      throw new Error(
+        "Session document does not exist. Please contact support."
+      );
 
     const session = await lucia.createSession(userDocument._id, {});
     const sessionCookie = lucia.createSessionCookie(session.id);

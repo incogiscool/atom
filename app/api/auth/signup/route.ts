@@ -96,7 +96,7 @@ export const POST = async (request: NextRequest) => {
     if (!userDocument) throw new Error("Invalid user document.");
 
     //@ts-expect-error Property 'uid' does not exist on type 'never' --  Not sure why this error occurs
-    const luciaSession = await lucia.createSession(userDocument.uid, {});
+    const luciaSession = await lucia.createSession(userDocument._id, {});
     const luciaSessionCookie = lucia.createSessionCookie(luciaSession.id);
     cookies().set(
       luciaSessionCookie.name,
