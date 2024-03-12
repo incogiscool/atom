@@ -5,7 +5,15 @@ meta {
 }
 
 delete {
-  url: {{base_url}}/api/projects/delete
-  body: none
+  url: {{base_url}}/api/projects/delete?project_id={{project_id}}
+  body: json
   auth: none
+}
+
+query {
+  project_id: {{project_id}}
+}
+
+headers {
+  cookie: auth_session={{session_id}}
 }
