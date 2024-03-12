@@ -5,12 +5,13 @@ meta {
 }
 
 get {
-  url: {{base_url}}/api/projects/get/single
+  url: {{base_url}}/api/projects/get/single?project_id={{project_id}}
   body: none
   auth: none
 }
 
 query {
+  project_id: {{project_id}}
   ~project_id: 123
 }
 
