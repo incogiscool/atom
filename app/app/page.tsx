@@ -1,17 +1,15 @@
-"use client";
-
 import { AppSidebarNav } from "@/components/sidebars/AppSidebarNav";
 import { columns } from "@/components/tables/UserDocumentProjects/columns";
 import { DataTable } from "@/components/tables/UserDocumentProjects/table";
-import { useUserDocument } from "@/state/UserDocumentState";
+import { fetchUser } from "@/lib/server/functions/user/fetchUser";
+import { redirect } from "next/navigation";
 
 const AppPage = async () => {
-  //CREATE PROTECTEDROUTES COMPONENT THAT WILL CHECK IF USER LOGGEDD IN ASWELL W SERVER COMPONENT
-  const { userDocument } = useUserDocument();
+  const { success, message, response: userDocument } = await fetchUser();
 
   return (
     <>
-      {userDocument ? (
+      {success ? (
         <div className="flex gap-12">
           <AppSidebarNav
             active="projects"
@@ -26,7 +24,7 @@ const AppPage = async () => {
           </main>
         </div>
       ) : (
-        "make so that it is loading + make a container that does all of app and protected routes"
+        <p>{message || "Unknown error."}</p>
       )}
     </>
   );

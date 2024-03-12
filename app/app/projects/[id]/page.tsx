@@ -1,8 +1,5 @@
-"use server";
 import { ProjectComponent } from "@/components/ui/project-page/ProjectComponent";
-import { getProject } from "@/lib/client/projects/getProject";
-import Link from "next/link";
-import { HiArrowLongLeft } from "react-icons/hi2";
+import { getProject } from "@/lib/server/functions/projects/getProject";
 
 type ProjectPageParams = {
   params: {
@@ -11,19 +8,18 @@ type ProjectPageParams = {
 };
 
 const ProjectPage = async ({ params }: ProjectPageParams) => {
-  //this is a test function, it doesnt actually fetch anything
-  const project = await getProject(params.id);
+  const { success, message, response: project } = await getProject(params.id);
 
   return (
-    <div className="h-screen flex flex-col">
-      {/* <Link href={"/app"}>
-        <div className="flex gap-2 items-center border py-3 px-5 text-center hover:bg-slate-100 transition">
-          <HiArrowLongLeft className="text-2xl" />
-          <p>Back to app</p>
+    <>
+      {success ? (
+        <div className="h-screen flex flex-col">
+          <ProjectComponent project={project} />
         </div>
-      </Link> */}
-      <ProjectComponent project={project} />
-    </div>
+      ) : (
+        <p>{message || "Unknown error."}</p>
+      )}
+    </>
   );
 };
 

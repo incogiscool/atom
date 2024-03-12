@@ -18,7 +18,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import { useUserDocument } from "@/state/UserDocumentState";
 
 const signupFormSchema = z.object({
   email: z.string().email("Please enter a valid email."),
@@ -39,8 +38,6 @@ const signupFormSchema = z.object({
 export type SignupFormInputs = z.infer<typeof signupFormSchema>;
 
 export const SignupForm = () => {
-  const { setUserDocument } = useUserDocument();
-
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -63,9 +60,7 @@ export const SignupForm = () => {
       if (formValues.confirm_password !== formValues.password)
         throw new Error("Passwords must match.");
 
-      const userDocument = await signupUser(formValues);
-
-      setUserDocument(userDocument);
+      await signupUser(formValues);
 
       router.push("/app");
       setIsLoading(false);

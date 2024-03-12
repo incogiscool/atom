@@ -16,7 +16,7 @@ export const getProject = async (project_id: string) => {
     )
   ).data;
 
-  if (!res.success) throw new Error(res.message || "Unknown error.");
+  // if (!res.success) throw new Error(res.message || "Unknown error.");
 
-  return res.response;
+  return res;
 };

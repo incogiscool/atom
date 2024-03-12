@@ -16,7 +16,7 @@ export const fetchUser = async () => {
 
   const data = response.data;
 
-  if (!data.success) throw new Error(data.message || "Internal server error.");
+  // if (!data.success) throw new Error(data.message || "Internal server error.");
 
-  return data.response;
+  return data;
 };

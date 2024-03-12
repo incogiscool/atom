@@ -31,6 +31,10 @@ export const GET = async (request: NextRequest) => {
       const project = await ProjectsRef.findOne({ _id: project_id });
       if (!project) throw new Error("Invalid project id.");
 
+      const isAuth = project.creator_uid === user.id;
+
+      if (!isAuth) throw new Error("Not authorized.");
+
       return NextResponse.json<ApiResponse<Project>>({
         success: true,
         response: project,
