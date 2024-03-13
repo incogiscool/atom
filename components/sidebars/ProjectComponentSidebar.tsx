@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction } from "react";
 import toast from "react-hot-toast";
 import { IoChevronBackOutline, IoCopyOutline } from "react-icons/io5";
 import { Button } from "../ui/button";
+import { CreatePostModal } from "../modals/CreatePostModal";
 
 export const ProjectComponentSidebar = ({
   project,
@@ -14,8 +15,6 @@ export const ProjectComponentSidebar = ({
   selectedPostId: string | null;
   setSelectedPostId: Dispatch<SetStateAction<string | null>>;
 }) => {
-  function handleCreateNewPost() {}
-
   return (
     <div className="flex flex-col h-screen max-h-screen w-[325px] p-4 border-r">
       <div className="flex-shrink-0 flex gap-4 items-center">
@@ -59,9 +58,7 @@ export const ProjectComponentSidebar = ({
           <IoCopyOutline />
           <p>Copy project key</p>
         </Button>
-        <Button onClick={handleCreateNewPost} className="w-full">
-          Create new post
-        </Button>
+        <CreatePostModal />
       </div>
     </div>
   );
