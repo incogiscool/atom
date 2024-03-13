@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { FaTrash } from "react-icons/fa";
 import {
   Form,
   FormControl,
@@ -26,6 +27,7 @@ export type ProjectFormInputs = z.infer<typeof projectFormSchema>;
 
 export const ProjectFormComponent = ({ openedPost }: { openedPost: Post }) => {
   function onSubmit() {}
+  function handleDeleteItem() {}
 
   const form = useForm<ProjectFormInputs>({
     resolver: zodResolver(projectFormSchema),
@@ -44,7 +46,13 @@ export const ProjectFormComponent = ({ openedPost }: { openedPost: Post }) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 px-8">
-        <p className="text-sm text-slate-500">id: {openedPost.id}</p>
+        <div className="flex justify-between gap-4 flex-wrap items-ce ter">
+          <p className="text-sm text-slate-500">id: {openedPost.id}</p>
+          <FaTrash
+            className="text-red-700 cursor-pointer"
+            onClick={handleDeleteItem}
+          />
+        </div>
         <FormField
           control={form.control}
           name="title"
