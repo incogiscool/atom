@@ -17,6 +17,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { MdEditor } from "md-editor-rt";
 import "md-editor-rt/lib/style.css";
 import { MarkdownEditor } from "@/components/ui/markdown-editor";
+import { useEffect } from "react";
 
 export const projectFormSchema = z.object({
   title: z.string().min(1, "Title cannot be empty."),
@@ -33,20 +34,19 @@ export const ProjectFormComponent = ({ openedPost }: { openedPost: Post }) => {
   function onSubmit() {}
   function handleDeleteItem() {}
 
+  const keywords =
+    (openedPost.keywords && openedPost.keywords.join(",")) || undefined;
+
   const form = useForm<ProjectFormInputs>({
     resolver: zodResolver(projectFormSchema),
     defaultValues: {
-      // title: openedPost?.title || "",
-      // author: openedPost?.author || "",
-      // body: openedPost?.body || "",
-      // keywords: openedPost?.keywords || null,
-      // image: openedPost?.keywords || null,
-      body: "### Omak\nWhy Not????",
+      title: openedPost?.title || "",
+      author: openedPost?.author || "",
+      keywords,
+      image: openedPost?.image || null,
+      body: openedPost?.body || "",
     },
   });
-
-  const keywords =
-    (openedPost.keywords && openedPost.keywords.join(",")) || null;
 
   return (
     <Form {...form}>
@@ -119,7 +119,7 @@ export const ProjectFormComponent = ({ openedPost }: { openedPost: Post }) => {
               <FormControl>
                 <Input
                   placeholder="Keywords"
-                  defaultValue={keywords || ""}
+                  defaultValue={field.value}
                   {...field}
                 />
               </FormControl>

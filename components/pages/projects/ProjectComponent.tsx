@@ -23,7 +23,10 @@ export const ProjectComponent = ({ project }: { project: Project }) => {
         <div className="flex h-full">
           <div className="overflow-auto w-full">
             {openedPost ? (
-              <ProjectFormComponent openedPost={openedPost} />
+              <ProjectFormComponent
+                key={openedPost.id}
+                openedPost={openedPost}
+              />
             ) : (
               "No opened post."
             )}
