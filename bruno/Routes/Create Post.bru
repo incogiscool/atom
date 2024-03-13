@@ -5,9 +5,13 @@ meta {
 }
 
 post {
-  url: {{base_url}}/api/posts/create
+  url: {{base_url}}/api/posts/create?project_id={{project_id}}
   body: json
   auth: none
+}
+
+query {
+  project_id: {{project_id}}
 }
 
 headers {
@@ -18,7 +22,6 @@ body:json {
   {
     "title": "post 1 omak",
     "author": "Adam El Taha",
-    "body": "###Hello\n#omak",
-    "project_id": "edb572ae-5d92-4795-b7a5-43f663d2b955"
+    "body": "###Hello\n#omak"
   }
 }

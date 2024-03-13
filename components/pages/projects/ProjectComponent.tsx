@@ -12,8 +12,6 @@ export const ProjectComponent = ({ project }: { project: Project }) => {
   const openedPost =
     project.posts.find((post) => post.id === openedPostId) || null;
 
-  async function onSubmit() {}
-
   return (
     <div className="flex">
       <ProjectComponentSidebar

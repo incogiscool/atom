@@ -3,15 +3,13 @@ import { ApiResponse } from "../../auth/signup/route";
 import { ProjectsRef, connectToDatabase } from "@/lib/server/mongo/init";
 import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 import { v4 as uuidv4 } from "uuid";
-import { Post } from "@/lib/types";
 
 export type CreatePostRequest = {
   title: string;
   author: string;
   body: string;
   image?: string;
-  keywords?: string[];
-  project_id: string;
+  keywords?: string;
 };
 
 export const POST = async (request: NextRequest) => {

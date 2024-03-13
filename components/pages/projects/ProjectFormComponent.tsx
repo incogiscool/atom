@@ -13,6 +13,10 @@ import { Post } from "@/lib/types";
 import { Input } from "../../ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../../ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { MdEditor } from "md-editor-rt";
+import "md-editor-rt/lib/style.css";
+import { MarkdownEditor } from "@/components/ui/markdown-editor";
 
 export const projectFormSchema = z.object({
   title: z.string().min(1, "Title cannot be empty."),
@@ -37,6 +41,7 @@ export const ProjectFormComponent = ({ openedPost }: { openedPost: Post }) => {
       // body: openedPost?.body || "",
       // keywords: openedPost?.keywords || null,
       // image: openedPost?.keywords || null,
+      body: "### Omak\nWhy Not????",
     },
   });
 
@@ -94,11 +99,12 @@ export const ProjectFormComponent = ({ openedPost }: { openedPost: Post }) => {
             <FormItem className="w-full flex flex-col">
               <FormLabel>Body</FormLabel>
               <FormControl>
-                <textarea
+                {/* <Textarea
                   {...field}
                   defaultValue={openedPost.body}
-                  className="border rounded-md p-2 h-[250px]"
-                />
+                  className="h-[250px]"
+                /> */}
+                <MarkdownEditor value={field.value} onChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>
