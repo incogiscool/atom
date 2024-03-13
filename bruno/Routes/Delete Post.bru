@@ -1,0 +1,20 @@
+meta {
+  name: Delete Post
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{base_url}}/api/posts/delete?project_id={{project_id}}&&post_id={{post_id}}
+  body: none
+  auth: none
+}
+
+query {
+  project_id: {{project_id}}
+  post_id: {{post_id}}
+}
+
+headers {
+  cookie: auth_session={{session_id}}
+}
