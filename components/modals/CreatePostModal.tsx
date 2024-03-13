@@ -29,8 +29,8 @@ const formSchema = z.object({
   title: z.string().min(1),
   author: z.string().min(1),
   body: z.string().min(1),
-  keywords: z.string().min(1).optional(),
-  image: z.string().min(1).optional(),
+  keywords: z.string().optional(),
+  image: z.string().optional(),
 });
 
 export const CreatePostModal = ({ project_id }: { project_id: string }) => {
@@ -61,6 +61,7 @@ export const CreatePostModal = ({ project_id }: { project_id: string }) => {
       router.refresh();
       setIsLoading(false);
       setModalOpen(false);
+      form.reset();
     } catch (err: any) {
       console.log(err);
 
