@@ -19,7 +19,7 @@ export const projectFormSchema = z.object({
   author: z.string().min(1, "Author cannot be empty."),
   body: z.string().min(1, "Title cannot be empty."),
   //DO KEYWORDS ZOD TYPE AS ARRAY
-  keywords: z.any(),
+  keywords: z.string().optional(),
   image: z.any(),
 });
 
