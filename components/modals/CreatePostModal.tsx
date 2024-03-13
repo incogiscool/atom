@@ -18,7 +18,6 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
-import "md-editor-rt/lib/style.css";
 import { MarkdownEditor } from "../ui/markdown-editor";
 import { createPost } from "@/lib/client/posts/createPost";
 import toast from "react-hot-toast";

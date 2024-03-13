@@ -13,11 +13,7 @@ import { Post } from "@/lib/types";
 import { Input } from "../../ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../../ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { MdEditor } from "md-editor-rt";
-import "md-editor-rt/lib/style.css";
 import { MarkdownEditor } from "@/components/ui/markdown-editor";
-import { useEffect } from "react";
 
 export const projectFormSchema = z.object({
   title: z.string().min(1, "Title cannot be empty."),

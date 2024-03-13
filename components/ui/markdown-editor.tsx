@@ -1,54 +1,30 @@
-import { ChangeEvent, MdEditor, ToolbarNames } from "md-editor-rt";
-import "md-editor-rt/lib/preview.css";
+import MDEditor, { ContextStore } from "@uiw/react-md-editor";
+import { ChangeEvent } from "react";
+import rehypeSanitize from "rehype-sanitize";
 
 export const MarkdownEditor = ({
   value,
   onChange,
 }: {
   value: string;
-  onChange: ChangeEvent;
+  onChange:
+    | ((
+        value?: string | undefined,
+        event?: ChangeEvent<HTMLTextAreaElement> | undefined,
+        state?: ContextStore | undefined
+      ) => void)
+    | undefined;
 }) => {
-  const toolbar: ToolbarNames[] = [
-    "revoke",
-    "next",
-    "save",
-    "-",
-    "bold",
-    "underline",
-    "italic",
-    "-",
-    "strikeThrough",
-    "title",
-    "sub",
-    "sup",
-    "quote",
-    "unorderedList",
-    "orderedList",
-    "task", // ^2.4.0
-    "-",
-    "codeRow",
-    "code",
-    "link",
-    // No image support FOR NOW
-    // "image",
-    "table",
-    "mermaid",
-    "katex",
-    "=",
-    "pageFullscreen",
-    "fullscreen",
-    "preview",
-    "htmlPreview",
-    "github",
-  ];
-
   return (
-    <MdEditor
-      modelValue={value}
+    <MDEditor
+      value={value}
       onChange={onChange}
-      language="en-US"
       className="rounded-lg"
-      toolbars={toolbar}
+      data-color-mode="light"
+      previewOptions={{
+        rehypePlugins: [[rehypeSanitize]],
+      }}
+      height={300}
       //   onUploadImg={(files) => {
       //     console.log(files);
       //   }}
