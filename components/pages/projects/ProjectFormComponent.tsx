@@ -39,7 +39,7 @@ export const ProjectFormComponent = ({ openedPost }: { openedPost: Post }) => {
       title: openedPost?.title || "",
       author: openedPost?.author || "",
       keywords,
-      image: openedPost?.image || null,
+      image: openedPost?.image || "",
       body: openedPost?.body || "",
     },
   });
@@ -61,11 +61,7 @@ export const ProjectFormComponent = ({ openedPost }: { openedPost: Post }) => {
             <FormItem className="w-full">
               <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input
-                  defaultValue={openedPost.title}
-                  placeholder="Title"
-                  {...field}
-                />
+                <Input placeholder="Title" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -78,11 +74,7 @@ export const ProjectFormComponent = ({ openedPost }: { openedPost: Post }) => {
             <FormItem className="w-full">
               <FormLabel>Author</FormLabel>
               <FormControl>
-                <Input
-                  defaultValue={openedPost.author}
-                  placeholder="Author"
-                  {...field}
-                />
+                <Input placeholder="Author" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -113,11 +105,7 @@ export const ProjectFormComponent = ({ openedPost }: { openedPost: Post }) => {
             <FormItem className="w-full">
               <FormLabel>Keywords (seperate with a comma)</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="Keywords"
-                  defaultValue={field.value}
-                  {...field}
-                />
+                <Input placeholder="Keywords" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -128,7 +116,7 @@ export const ProjectFormComponent = ({ openedPost }: { openedPost: Post }) => {
           name="image"
           render={({ field }) => (
             <FormItem className="w-full">
-              <FormLabel>Image</FormLabel>
+              <FormLabel>Cover image</FormLabel>
               <FormControl>
                 <Input type="file" {...field} />
               </FormControl>
