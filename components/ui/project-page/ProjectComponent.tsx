@@ -6,7 +6,7 @@ import { ProjectFormComponent } from "./ProjectFormComponent";
 
 export const ProjectComponent = ({ project }: { project: Project }) => {
   const [openedPostId, setOpenedPostId] = useState(
-    project.posts[1]?.id || null
+    project.posts[0]?.id || null
   );
 
   const openedPost =
