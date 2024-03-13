@@ -22,7 +22,7 @@ import { MarkdownEditor } from "../ui/markdown-editor";
 import { createPost } from "@/lib/client/posts/createPost";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 const formSchema = z.object({
   title: z.string().min(1),
@@ -32,7 +32,13 @@ const formSchema = z.object({
   image: z.string().optional(),
 });
 
-export const CreatePostModal = ({ project_id }: { project_id: string }) => {
+export const CreatePostModal = ({
+  project_id,
+  setOpenedPostId,
+}: {
+  project_id: string;
+  setOpenedPostId: Dispatch<SetStateAction<string | null>>;
+}) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -55,11 +61,12 @@ export const CreatePostModal = ({ project_id }: { project_id: string }) => {
       setIsLoading(true);
       const formData = form.getValues();
 
-      await createPost(project_id, formData);
+      const post = await createPost(project_id, formData);
 
       router.refresh();
       setIsLoading(false);
       setModalOpen(false);
+      setOpenedPostId(post.id);
       form.reset();
     } catch (err: any) {
       console.log(err);

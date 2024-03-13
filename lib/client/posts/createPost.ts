@@ -1,7 +1,7 @@
 import { ApiResponse } from "@/app/api/auth/signup/route";
 import { CreatePostRequest } from "@/app/api/posts/create/route";
 import { baseAPIRoute } from "@/lib/contants";
-import { Project } from "@/lib/types";
+import { Post, Project } from "@/lib/types";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -10,7 +10,7 @@ export const createPost = async (
   inputData: CreatePostRequest
 ) => {
   const res = (
-    await axios.post<ApiResponse>(
+    await axios.post<ApiResponse<Post>>(
       `${baseAPIRoute}/posts/create?project_id=${project_id}`,
       inputData
     )

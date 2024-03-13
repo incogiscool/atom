@@ -58,7 +58,10 @@ export const ProjectComponentSidebar = ({
           <IoCopyOutline />
           <p>Copy project key</p>
         </Button>
-        <CreatePostModal project_id={project._id} />
+        <CreatePostModal
+          project_id={project._id}
+          setOpenedPostId={setSelectedPostId}
+        />
       </div>
     </div>
   );

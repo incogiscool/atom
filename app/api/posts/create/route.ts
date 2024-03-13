@@ -3,6 +3,7 @@ import { ApiResponse } from "../../auth/signup/route";
 import { ProjectsRef, connectToDatabase } from "@/lib/server/mongo/init";
 import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 import { v4 as uuidv4 } from "uuid";
+import { Post } from "@/lib/types";
 
 export type CreatePostRequest = {
   title: string;
@@ -33,7 +34,7 @@ export const POST = async (request: NextRequest) => {
 
     const post_id = uuidv4();
 
-    await ProjectsRef.updateOne({
+    await project.updateOne({
       $push: {
         posts: {
           id: post_id,
@@ -46,10 +47,16 @@ export const POST = async (request: NextRequest) => {
       },
     });
 
-    return NextResponse.json<ApiResponse<null>>({
+    const _project = await ProjectsRef.findOne({ _id: project_id });
+    if (!_project) throw new Error("Project not found.");
+    const post = _project?.posts.find((post) => post.id === post_id);
+
+    if (!post) throw new Error("Post not found.");
+
+    return NextResponse.json<ApiResponse<Post>>({
       success: true,
       message: "Successfuly created post.",
-      response: null,
+      response: post,
     });
   } catch (err: any) {
     console.log(err);
