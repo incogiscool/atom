@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { ApiResponse } from "../../auth/signup/route";
 import { ProjectsRef, connectToDatabase } from "@/lib/server/mongo/init";
 import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
@@ -14,15 +14,18 @@ export type CreatePostRequest = {
   project_id: string;
 };
 
-export const POST = async (request: Request) => {
+export const POST = async (request: NextRequest) => {
   try {
     const data = await request.json();
+    const project_id = request.nextUrl.searchParams.get("project_id");
+
+    if (!project_id) throw new Error("Invalid project id.");
 
     await connectToDatabase();
     const { user } = await validateRequest();
     if (!user) throw new Error("Invalid session. Please sign in.");
 
-    const project = await ProjectsRef.findOne({ _id: data.project_id });
+    const project = await ProjectsRef.findOne({ _id: project_id });
 
     if (!project) throw new Error("Invalid project id.");
 
