@@ -1,4 +1,4 @@
-import { ProjectComponent } from "@/components/ui/project-page/ProjectComponent";
+import { ProjectComponent } from "@/components/pages/projects/ProjectComponent";
 import { getProject } from "@/lib/server/functions/projects/getProject";
 
 type ProjectPageParams = {

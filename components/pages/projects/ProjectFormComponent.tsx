@@ -7,12 +7,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../form";
+} from "../../ui/form";
 import z from "zod";
 import { Post } from "@/lib/types";
-import { Input } from "../input";
+import { Input } from "../../ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "../button";
+import { Button } from "../../ui/button";
 
 export const projectFormSchema = z.object({
   title: z.string().min(1, "Title cannot be empty."),
