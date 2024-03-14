@@ -5,11 +5,11 @@ import axios from "axios";
 
 export const getPost = async (apiKey: string, postId: string) => {
   const res = (
-    await axios.get<ApiResponse<Post | null>>(
-      `${baseAPIRoute}/get-post?post_id=${postId}`,
+    await axios.get<ApiResponse<Post>>(
+      `${baseAPIRoute}/posts/get/single?post_id=${postId}`,
       {
         headers: {
-          api_key: apiKey,
+          Authorization: `Bearer ${apiKey}`,
         },
       }
     )

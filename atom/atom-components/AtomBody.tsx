@@ -1,5 +1,4 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { useEffect, useState } from "react";
 
 export const AtomBody = async ({
   className,
