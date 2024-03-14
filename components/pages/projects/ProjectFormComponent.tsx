@@ -1,4 +1,15 @@
 import { useForm } from "react-hook-form";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { FaTrash } from "react-icons/fa";
 import {
   Form,
@@ -14,6 +25,10 @@ import { Input } from "../../ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../../ui/button";
 import { MarkdownEditor } from "@/components/ui/markdown-editor";
+import toast from "react-hot-toast";
+import { deletePost } from "@/lib/client/posts/deletePost";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export const projectFormSchema = z.object({
   title: z.string().min(1, "Title cannot be empty."),
@@ -26,9 +41,27 @@ export const projectFormSchema = z.object({
 
 export type ProjectFormInputs = z.infer<typeof projectFormSchema>;
 
-export const ProjectFormComponent = ({ openedPost }: { openedPost: Post }) => {
+export const ProjectFormComponent = ({
+  openedPost,
+  project_id,
+}: {
+  openedPost: Post;
+  project_id: string;
+}) => {
+  const router = useRouter();
+
   function onSubmit() {}
-  function handleDeleteItem() {}
+  async function handleDeleteItem() {
+    try {
+      await deletePost(project_id, openedPost.id);
+
+      router.refresh();
+    } catch (err: any) {
+      console.log(err);
+
+      toast.error(err.message || err);
+    }
+  }
 
   const keywords =
     (openedPost.keywords && openedPost.keywords.join(",")) || undefined;
@@ -49,10 +82,26 @@ export const ProjectFormComponent = ({ openedPost }: { openedPost: Post }) => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 px-8">
         <div className="flex justify-between gap-4 flex-wrap items-ce ter">
           <p className="text-sm text-slate-500">id: {openedPost.id}</p>
-          <FaTrash
-            className="text-red-700 cursor-pointer"
-            onClick={handleDeleteItem}
-          />
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <FaTrash className="text-red-700 cursor-pointer" />
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete
+                  your post from our servers.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={handleDeleteItem}>
+                  Delete
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
         <FormField
           control={form.control}
@@ -87,11 +136,6 @@ export const ProjectFormComponent = ({ openedPost }: { openedPost: Post }) => {
             <FormItem className="w-full flex flex-col">
               <FormLabel>Body</FormLabel>
               <FormControl>
-                {/* <Textarea
-                  {...field}
-                  defaultValue={openedPost.body}
-                  className="h-[250px]"
-                /> */}
                 <MarkdownEditor value={field.value} onChange={field.onChange} />
               </FormControl>
               <FormMessage />

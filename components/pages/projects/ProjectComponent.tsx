@@ -25,6 +25,7 @@ export const ProjectComponent = ({ project }: { project: Project }) => {
             {openedPost ? (
               <ProjectFormComponent
                 key={openedPost.id}
+                project_id={project._id}
                 openedPost={openedPost}
               />
             ) : (
