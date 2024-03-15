@@ -12,6 +12,17 @@ export type UpdatePostRequestParams = {
   image?: string;
 };
 
+// Function to filter out empty strings or null values
+const filterEmptyValues = (obj: any) => {
+  const newObj: any = {};
+  for (const key in obj) {
+    if (obj[key] && obj[key] !== "") {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
+};
+
 export const PUT = async (request: NextRequest) => {
   try {
     const searchParams = request.nextUrl.searchParams;
@@ -34,6 +45,9 @@ export const PUT = async (request: NextRequest) => {
     const post = project.posts.find((post) => post.id === post_id);
 
     if (!post) throw new Error("Could not find post.");
+
+    const filteredBody = filterEmptyValues(body);
+
     // Do logic
   } catch (err: any) {
     console.log(err);
