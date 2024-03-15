@@ -25,7 +25,7 @@ export const navOptions = [
 ] as const;
 
 export const maxInputLength = 20;
-export const projectTitleMaxLength = 20;
+export const projectTitleMaxLength = 35;
 
 export const baseAPIRoute = "http://localhost:3000/api";
 export const mongoDBURI = process.env.MONGO_DB_URI;

@@ -11,11 +11,12 @@ export type CreatePostRequest = {
   body: string;
   image?: string;
   keywords?: string;
+  teaser: string;
 };
 
 export const POST = async (request: NextRequest) => {
   try {
-    const data = await request.json();
+    const data = (await request.json()) as CreatePostRequest;
     const project_id = request.nextUrl.searchParams.get("project_id");
 
     if (!project_id) throw new Error("Invalid project id.");
@@ -34,6 +35,8 @@ export const POST = async (request: NextRequest) => {
 
     const post_id = uuidv4();
 
+    const keywords = data?.keywords?.split(",") || [];
+
     await project.updateOne({
       $push: {
         posts: {
@@ -42,7 +45,8 @@ export const POST = async (request: NextRequest) => {
           title: data.title,
           body: data.body,
           image: data.image || null,
-          keywords: data.keywords || [],
+          keywords,
+          teaser: data.teaser,
         },
       },
     });

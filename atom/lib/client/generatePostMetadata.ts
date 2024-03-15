@@ -9,7 +9,7 @@ export const generatePostMetadata = async (
 
   return {
     title: postData?.title || "Couldn't find post.",
-    description: postData?.body.slice(0, 35) + "..." || null,
+    description: postData.teaser || null,
     keywords: postData?.keywords || null,
     authors: {
       name: postData?.author || "Atom",

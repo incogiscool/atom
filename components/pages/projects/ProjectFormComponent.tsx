@@ -14,6 +14,7 @@ import { FaTrash } from "react-icons/fa";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -34,9 +35,9 @@ export const projectFormSchema = z.object({
   title: z.string().min(1, "Title cannot be empty."),
   author: z.string().min(1, "Author cannot be empty."),
   body: z.string().min(1, "Title cannot be empty."),
-  //DO KEYWORDS ZOD TYPE AS ARRAY
   keywords: z.string().optional(),
-  image: z.any(),
+  image: z.string().optional(),
+  teaser: z.string().url().min(1, "Teaser cannot be empty"),
 });
 
 export type ProjectFormInputs = z.infer<typeof projectFormSchema>;
@@ -69,11 +70,12 @@ export const ProjectFormComponent = ({
   const form = useForm<ProjectFormInputs>({
     resolver: zodResolver(projectFormSchema),
     defaultValues: {
-      title: openedPost?.title || "",
-      author: openedPost?.author || "",
+      title: openedPost.title || "",
+      author: openedPost.author || "",
       keywords,
-      image: openedPost?.image || "",
-      body: openedPost?.body || "",
+      image: openedPost.image || "",
+      body: openedPost.body || "",
+      teaser: openedPost.teaser || "",
     },
   });
 
@@ -144,6 +146,19 @@ export const ProjectFormComponent = ({
         />
         <FormField
           control={form.control}
+          name="teaser"
+          render={({ field }) => (
+            <FormItem className="w-full">
+              <FormLabel>Teaser</FormLabel>
+              <FormControl>
+                <Input placeholder="Teaser" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
           name="keywords"
           render={({ field }) => (
             <FormItem className="w-full">
@@ -160,9 +175,9 @@ export const ProjectFormComponent = ({
           name="image"
           render={({ field }) => (
             <FormItem className="w-full">
-              <FormLabel>Cover image</FormLabel>
+              <FormLabel>Cover image link</FormLabel>
               <FormControl>
-                <Input type="file" {...field} />
+                <Input placeholder="Image link" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

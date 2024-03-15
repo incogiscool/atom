@@ -29,28 +29,32 @@ export const Atom = async ({
       {res ? (
         <main className="flex justify-center sm:p-20 p-8">
           <article className="prose lg:prose-xl">
-            <div className="flex items-center flex-col gap-4 max-w-[950px]">
+            <div className="flex items-center flex-col gap-4">
               <section className="space-y-6">
                 <header className="space-y-4">
-                  <h1 className="sm:text-5xl text-4xl text-center font-bold">
-                    {res.title}
-                  </h1>
+                  <h1 className="text-center">{res.title}</h1>
+
+                  {res.image && (
+                    <div
+                      className="w-full h-auto rounded-xl"
+                      style={{
+                        backgroundImage: `url(${res.image})`,
+                        width: "100%",
+                        height: 450,
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
+                      }}
+                    />
+                  )}
 
                   <div className="flex items-center justify-center gap-4">
+                    <p className="author">{res.author}</p>|
                     <time dateTime={publish_date.toDateString()}>
                       {publish_date.toDateString()}
                     </time>
-                    |<p className="author">{res.author}</p>
                   </div>
                 </header>
-
-                {res.image && (
-                  <img
-                    alt="article-image"
-                    src={res.image}
-                    className="w-full h-auto rounded-xl"
-                  />
-                )}
               </section>
 
               <section className="mt-12">

@@ -1,7 +1,5 @@
-import { encodePassword } from "./encodePassword";
+import argon2 from "argon2";
 
-export const isPasswordValid = (hash: string, password: string) => {
-  const encodedString = encodePassword(password);
-
-  return encodedString === hash;
+export const isPasswordValid = async (hash: string, password: string) => {
+  return await argon2.verify(hash, password + process.env.HASH_SALT);
 };

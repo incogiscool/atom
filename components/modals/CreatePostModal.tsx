@@ -9,6 +9,7 @@ import {
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -29,7 +30,8 @@ const formSchema = z.object({
   author: z.string().min(1),
   body: z.string().min(1),
   keywords: z.string().optional(),
-  image: z.string().optional(),
+  image: z.string().url().optional(),
+  teaser: z.string().min(1),
 });
 
 export const CreatePostModal = ({
@@ -135,6 +137,23 @@ export const CreatePostModal = ({
               />
               <FormField
                 control={form.control}
+                name="teaser"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Teaser</FormLabel>
+                    <FormDescription>
+                      A summary of what you are going to talk about in a
+                      sentence or two.
+                    </FormDescription>
+                    <FormControl>
+                      <Input placeholder="Teaser" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
                 name="keywords"
                 render={({ field }) => (
                   <FormItem>
@@ -153,7 +172,7 @@ export const CreatePostModal = ({
                   <FormItem>
                     <FormLabel>Cover image link</FormLabel>
                     <FormControl>
-                      <Input type="string" {...field} />
+                      <Input placeholder="Image link" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

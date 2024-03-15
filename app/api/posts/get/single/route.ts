@@ -27,7 +27,7 @@ export const GET = async (request: NextRequest) => {
 
     const project = await ProjectsRef.findOne({ project_key });
 
-    if (!project) throw new Error("Could not find post.");
+    if (!project) throw new Error("Could not find project.");
 
     let post = project.posts.find((post) => post.id === post_id);
 
@@ -38,7 +38,7 @@ export const GET = async (request: NextRequest) => {
     const planType = user.plan;
 
     const watermark =
-      "\n\nThis post was created using [Atom](https://www.atom.com)";
+      "\n\nThis post was created using [Atom](https://www.atomcms.dev)";
 
     if (planType === "free") post.body = post.body + watermark;
 

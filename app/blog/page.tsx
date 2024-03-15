@@ -6,5 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default function Blog() {
-  return <AtomPage apiKey={process.env.TEST_API_KEY!} />;
+  return <AtomPage baseRoute="/blog" apiKey={process.env.TEST_API_KEY!} />;
 }

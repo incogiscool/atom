@@ -33,6 +33,10 @@ export const postSchema = new Schema<Post>(
       type: String,
       required: true,
     },
+    teaser: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true, _id: false }
 );

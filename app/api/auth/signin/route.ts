@@ -26,7 +26,7 @@ export const POST = async (request: NextRequest) => {
 
     if (!emailCredentialDoc) throw new Error("Account does not exist.");
 
-    const isPasswordSame = isPasswordValid(
+    const isPasswordSame = await isPasswordValid(
       emailCredentialDoc.password_hash,
       password
     );

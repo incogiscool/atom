@@ -1,13 +1,10 @@
-import crypto from "crypto";
+import argon2 from "argon2";
 
-export const encodePassword = (password: string) => {
+export const encodePassword = async (password: string) => {
   const salt = process.env.HASH_SALT;
   const saltedString = password + salt;
 
-  const encodedHex = crypto
-    .createHash("sha256")
-    .update(saltedString)
-    .digest("hex");
+  const hash = await argon2.hash(saltedString);
 
-  return encodedHex;
+  return hash;
 };

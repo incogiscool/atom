@@ -1,43 +1,26 @@
 "use server";
-import Link from "next/link";
-import { getAllPosts } from "../lib/client/getAllPosts";
+import { getProject } from "../lib/client/getProject";
+import { AtomPostCard } from "./AtomPostCard";
 
-export const AtomPage = async ({ apiKey }: { apiKey: string }) => {
-  const res = await getAllPosts(apiKey);
+export const AtomPage = async ({
+  apiKey,
+  baseRoute,
+}: {
+  apiKey: string;
+  baseRoute: string;
+}) => {
+  const res = await getProject(apiKey);
+  const project = res.response;
 
   return (
     <main className="sm:p-20 p-8 flex flex-col justify-center">
-      {res ? (
-        <>
-          <h1 className="text-center text-5xl font-semibold">{res.title}</h1>
-          <div className="gap-6 flex flex-wrap justify-center mt-12">
-            {res.posts.map((post) => {
-              return (
-                <Link
-                  key={post.post_id}
-                  href={`/blog/${post.post_id}`}
-                  className="border rounded-lg w-[550px] p-6 flex items-center hover:bg-slate-100 transition"
-                >
-                  <div className="flex gap-8 flex-wrap">
-                    {post.image && (
-                      <img
-                        alt="article-image"
-                        src={post.image}
-                        className="w-[125px] h-[125px] rounded-xl"
-                      />
-                    )}
-                    <div className="max-w-xs">
-                      <h6 className="font-medium">{post.title}</h6>
-                      <p className="text-slate-500 text-sm mt-2">
-                        {post.teaser}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </>
+      <h1 className="text-center text-4xl font-bold">{project.title}</h1>
+      {res.success ? (
+        <div className="mt-12 flex flex-wrap gap-8 justify-center">
+          {project.posts.map((post) => (
+            <AtomPostCard post={post} key={post.id} baseRoute={baseRoute} />
+          ))}
+        </div>
       ) : (
         "could not fetch posts"
       )}

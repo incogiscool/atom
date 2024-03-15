@@ -1,6 +1,11 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import sanitizeHtml from "sanitize-html";
 import { marked } from "marked";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
+import "katex/dist/katex.min.css"; // `rehype-katex` does not import the CSS for you
 
 export const AtomBody = async ({
   className,
@@ -10,50 +15,16 @@ export const AtomBody = async ({
   body: string;
 }) => {
   const sanitized = sanitizeHtml(body);
-  const parsed = await marked(sanitized);
+  // const parsed = await marked(sanitized);
 
   return (
     <div className={className}>
-      <MDXRemote
-        // components={{
-        //   h1: (props) => (
-        //     <h1 {...props} className="text-4xl font-bold">
-        //       {props.children}
-        //     </h1>
-        //   ),
-        //   h2: (props) => (
-        //     <h2 {...props} className="text-3xl font-bold">
-        //       {props.children}
-        //     </h2>
-        //   ),
-        //   h3: (props) => (
-        //     <h3 {...props} className="text-2xl font-semibold">
-        //       {props.children}
-        //     </h3>
-        //   ),
-        //   h4: (props) => (
-        //     <h3 {...props} className="text-xl font-semibold">
-        //       {props.children}
-        //     </h3>
-        //   ),
-        //   h5: (props) => (
-        //     <h3 {...props} className="text-lg font-semibold">
-        //       {props.children}
-        //     </h3>
-        //   ),
-        //   h6: (props) => (
-        //     <h3 {...props} className="text-sm font-semibold">
-        //       {props.children}
-        //     </h3>
-        //   ),
-        //   a: (props) => (
-        //     <a {...props} className="text-blue-600 underline">
-        //       {props.children}
-        //     </a>
-        //   ),
-        // }}
-        source={parsed || "no text"}
-      />
+      <Markdown
+        remarkPlugins={[remarkGfm, remarkMath]}
+        rehypePlugins={[rehypeKatex]}
+      >
+        {sanitized}
+      </Markdown>
     </div>
   );
 };

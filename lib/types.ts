@@ -18,6 +18,7 @@ export type Post = {
   image: string | null;
   creator_uid: string;
   keywords?: string[];
+  teaser: string;
 };
 
 export type Plan = (typeof plans)[number];

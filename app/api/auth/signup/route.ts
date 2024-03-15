@@ -52,7 +52,7 @@ export const POST = async (request: NextRequest) => {
 
     verifySignupRequestInputs(email, password, first_name, last_name);
 
-    const hashedAndSaltedPassword = encodePassword(password);
+    const hashedAndSaltedPassword = await encodePassword(password);
     const uid = uuidv4();
 
     if (!mongoDBURI) throw new Error("Mongo DB URI invalid.");
