@@ -36,8 +36,8 @@ export const projectFormSchema = z.object({
   author: z.string().min(1, "Author cannot be empty."),
   body: z.string().min(1, "Title cannot be empty."),
   keywords: z.string().optional(),
-  image: z.string().optional(),
-  teaser: z.string().url().min(1, "Teaser cannot be empty"),
+  image: z.string().url().optional(),
+  teaser: z.string().min(1, "Teaser cannot be empty"),
 });
 
 export type ProjectFormInputs = z.infer<typeof projectFormSchema>;

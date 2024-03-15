@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ApiResponse } from "../../auth/signup/route";
-import { connectToDatabase } from "@/lib/server/mongo/init";
+import { ProjectsRef, connectToDatabase } from "@/lib/server/mongo/init";
 import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 
 export type UpdatePostRequestParams = {
@@ -24,6 +24,16 @@ export const PUT = async (request: NextRequest) => {
     const { user } = await validateRequest();
     if (!user) throw new Error("Invalid session. Please sign in.");
 
+    const project = await ProjectsRef.findOne({ _id: project_id });
+    if (!project) throw new Error("Could not find project.");
+
+    const isAuth = project.creator_uid === user.id;
+
+    if (!isAuth) throw new Error("Not authorized.");
+
+    const post = project.posts.find((post) => post.id === post_id);
+
+    if (!post) throw new Error("Could not find post.");
     // Do logic
   } catch (err: any) {
     console.log(err);
