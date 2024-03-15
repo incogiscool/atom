@@ -1,5 +1,10 @@
-import remarkGfm from "remark-gfm";
-import createMDX from "@next/mdx";
+// @ts-check
 
-/** @type {import('next').NextConfig} */
-export const nextConfig = {};
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = {
+  /* config options here */
+};
+
+export default nextConfig;
