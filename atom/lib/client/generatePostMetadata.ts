@@ -5,7 +5,8 @@ export const generatePostMetadata = async (
   apiKey: string,
   postId: string
 ): Promise<Metadata> => {
-  const postData = await getPost(apiKey, postId);
+  const res = await getPost(apiKey, postId);
+  const postData = res.response;
 
   return {
     title: postData?.title || "Couldn't find post.",

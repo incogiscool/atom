@@ -13,17 +13,17 @@ export type UpdatePostRequestParams = {
 };
 
 // Function to filter out empty strings or null values
-const filterEmptyValues = (obj: any) => {
+const formatBody = (obj: any, parentField: string) => {
   const newObj: any = {};
   for (const key in obj) {
     if (obj[key] && obj[key] !== "") {
-      newObj[key] = obj[key];
+      newObj[`${parentField}.$.${key}`] = obj[key];
     }
   }
   return newObj;
 };
 
-export const PUT = async (request: NextRequest) => {
+export const PATCH = async (request: NextRequest) => {
   try {
     const searchParams = request.nextUrl.searchParams;
     const project_id = searchParams.get("project_id");
@@ -46,9 +46,25 @@ export const PUT = async (request: NextRequest) => {
 
     if (!post) throw new Error("Could not find post.");
 
-    const filteredBody = filterEmptyValues(body);
+    const formattedBody = formatBody(body, "posts");
 
-    // Do logic
+    const _post = await ProjectsRef.updateOne(
+      { _id: project_id, "posts.id": post_id },
+      // {
+      //   $set: filteredBody,
+      // }
+      {
+        $set: formattedBody,
+      }
+    );
+
+    // console.log(_post);
+
+    return NextResponse.json<ApiResponse>({
+      response: null,
+      message: "Successfuly updated post",
+      success: true,
+    });
   } catch (err: any) {
     console.log(err);
 

@@ -30,14 +30,29 @@ import toast from "react-hot-toast";
 import { deletePost } from "@/lib/client/posts/deletePost";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { updatePost } from "@/lib/client/posts/updatePost";
+
+export function isUrl(url: string) {
+  const urlPattern = new RegExp(
+    "^(https?:\\/\\/)?" + // protocol
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+      "(\\#[-a-z\\d_]*)?$",
+    "i"
+  ); // fragment locator
+
+  return urlPattern.test(url);
+}
 
 export const projectFormSchema = z.object({
   title: z.string().min(1, "Title cannot be empty."),
   author: z.string().min(1, "Author cannot be empty."),
-  body: z.string().min(1, "Title cannot be empty."),
-  keywords: z.string().optional(),
-  image: z.string().url().optional(),
+  body: z.string().min(1, "Body cannot be empty."),
+  keywords: z.string().min(1, "Must include at least 1 keyword"),
   teaser: z.string().min(1, "Teaser cannot be empty"),
+  image: z.string().url(),
 });
 
 export type ProjectFormInputs = z.infer<typeof projectFormSchema>;
@@ -49,9 +64,27 @@ export const ProjectFormComponent = ({
   openedPost: Post;
   project_id: string;
 }) => {
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
-  function onSubmit() {}
+  async function onSubmit() {
+    if (loading) return;
+    try {
+      setLoading(true);
+      const values = form.getValues();
+
+      await updatePost(project_id, openedPost.id, values);
+
+      setLoading(false);
+    } catch (err: any) {
+      console.log(err);
+
+      toast.error(err.message || err);
+      setLoading(false);
+    }
+  }
+
   async function handleDeleteItem() {
     try {
       await deletePost(project_id, openedPost.id);
@@ -183,7 +216,8 @@ export const ProjectFormComponent = ({
             </FormItem>
           )}
         />
-        <Button>Save changes</Button>
+
+        <Button disabled={loading}>Save changes</Button>
       </form>
     </Form>
   );

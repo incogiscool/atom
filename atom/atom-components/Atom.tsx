@@ -20,13 +20,14 @@ export const Atom = async ({
   apiKey: string;
   postId: string;
 }) => {
-  const res = await getPost(apiKey, postId);
+  const apires = await getPost(apiKey, postId);
+  const res = apires.response;
 
   const publish_date = new Date(res?.createdAt || "");
 
   return (
     <>
-      {res ? (
+      {apires.success ? (
         <main className="flex justify-center sm:p-20 p-8">
           <article className="prose lg:prose-xl">
             <div className="flex items-center flex-col gap-4">
@@ -64,7 +65,7 @@ export const Atom = async ({
           </article>
         </main>
       ) : (
-        "no response from server"
+        apires.message
       )}
     </>
   );
