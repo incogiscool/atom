@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { ApiResponse } from "../../auth/signup/route";
 import { ProjectsRef, connectToDatabase } from "@/lib/server/mongo/init";
 import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
+import { maxInputLength, projectTitleMaxLength } from "@/lib/contants";
 
 export type UpdatePostRequestParams = {
   title?: string;
@@ -32,6 +33,23 @@ export const PATCH = async (request: NextRequest) => {
       (await request.json()) as UpdatePostRequestParams;
 
     await connectToDatabase();
+
+    if (title && title.length > projectTitleMaxLength)
+      throw new Error(
+        `Title cannot be longer than ${projectTitleMaxLength} characters.`
+      );
+
+    if (author && author.length > maxInputLength) {
+      throw new Error("Invalid author.");
+    }
+
+    if (keywords && keywords.length > maxInputLength) {
+      throw new Error("Invalid keywords.");
+    }
+
+    if (teaser && teaser.length > 100) {
+      throw new Error("Invalid teaser.");
+    }
 
     const { user } = await validateRequest();
     if (!user) throw new Error("Invalid session. Please sign in.");

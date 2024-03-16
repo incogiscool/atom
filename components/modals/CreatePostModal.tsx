@@ -24,14 +24,15 @@ import { createPost } from "@/lib/client/posts/createPost";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useState } from "react";
+import { maxInputLength, projectTitleMaxLength } from "@/lib/contants";
 
 const formSchema = z.object({
-  title: z.string().min(1),
-  author: z.string().min(1),
+  title: z.string().min(1).max(projectTitleMaxLength),
+  author: z.string().min(1).max(maxInputLength),
   body: z.string().min(1),
-  keywords: z.string().min(1),
+  keywords: z.string().min(1).max(maxInputLength),
   image: z.string().url(),
-  teaser: z.string().min(1),
+  teaser: z.string().min(1).max(100),
 });
 
 export const CreatePostModal = ({

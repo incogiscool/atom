@@ -31,28 +31,15 @@ import { deletePost } from "@/lib/client/posts/deletePost";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { updatePost } from "@/lib/client/posts/updatePost";
-
-export function isUrl(url: string) {
-  const urlPattern = new RegExp(
-    "^(https?:\\/\\/)?" + // protocol
-      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-      "(\\#[-a-z\\d_]*)?$",
-    "i"
-  ); // fragment locator
-
-  return urlPattern.test(url);
-}
+import { maxInputLength, projectTitleMaxLength } from "@/lib/contants";
 
 export const projectFormSchema = z.object({
-  title: z.string().min(1, "Title cannot be empty."),
-  author: z.string().min(1, "Author cannot be empty."),
-  body: z.string().min(1, "Body cannot be empty."),
-  keywords: z.string().min(1, "Must include at least 1 keyword"),
-  teaser: z.string().min(1, "Teaser cannot be empty"),
+  title: z.string().min(1).max(projectTitleMaxLength),
+  author: z.string().min(1).max(maxInputLength),
+  body: z.string().min(1),
+  keywords: z.string().min(1).max(maxInputLength),
   image: z.string().url(),
+  teaser: z.string().min(1).max(100),
 });
 
 export type ProjectFormInputs = z.infer<typeof projectFormSchema>;
