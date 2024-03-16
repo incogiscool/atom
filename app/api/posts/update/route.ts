@@ -28,7 +28,8 @@ export const PATCH = async (request: NextRequest) => {
     const searchParams = request.nextUrl.searchParams;
     const project_id = searchParams.get("project_id");
     const post_id = searchParams.get("post_id");
-    const body = (await request.json()) as UpdatePostRequestParams;
+    const { title, author, body, teaser, keywords, image } =
+      (await request.json()) as UpdatePostRequestParams;
 
     await connectToDatabase();
 
@@ -46,7 +47,28 @@ export const PATCH = async (request: NextRequest) => {
 
     if (!post) throw new Error("Could not find post.");
 
-    const formattedBody = formatBody(body, "posts");
+    const filteredBody: UpdatePostRequestParams = {};
+
+    if (title) {
+      filteredBody.title = title;
+    }
+    if (author) {
+      filteredBody.author = author;
+    }
+    if (body) {
+      filteredBody.body = body;
+    }
+    if (teaser) {
+      filteredBody.teaser = teaser;
+    }
+    if (keywords) {
+      filteredBody.keywords = keywords;
+    }
+    if (image) {
+      filteredBody.image = image;
+    }
+
+    const formattedBody = formatBody(filteredBody, "posts");
 
     const _post = await ProjectsRef.updateOne(
       { _id: project_id, "posts.id": post_id },
