@@ -7,7 +7,7 @@ const SettingsPage = async () => {
   return (
     <AppContainer
       email={userDocument.email}
-      first_name={userDocument.email}
+      first_name={userDocument.first_name}
       active="settings"
     >
       <h1 className="font-semibold text-4xl">Settings</h1>
