@@ -36,17 +36,23 @@ export const planDetails: {
   id: Plan;
   price: number | null;
   description: string;
+  max_docs: number;
+  max_body_length: number;
 }[] = [
   {
     title: "Free",
     id: "free",
     price: null,
     description: "idk tis is the free pla",
+    max_docs: 100,
+    max_body_length: 10000,
   },
   {
     title: "Business",
     id: "business",
     price: 12,
     description: "bruh thsi the busiens plan",
+    max_docs: 1000,
+    max_body_length: 100000,
   },
 ];
