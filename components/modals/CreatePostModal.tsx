@@ -29,8 +29,8 @@ const formSchema = z.object({
   title: z.string().min(1),
   author: z.string().min(1),
   body: z.string().min(1),
-  keywords: z.string().optional(),
-  image: z.string().url().optional(),
+  keywords: z.string().min(1),
+  image: z.string().url(),
   teaser: z.string().min(1),
 });
 

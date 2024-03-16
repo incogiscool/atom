@@ -15,7 +15,7 @@ export const getPost = async (apiKey: string, postId: string) => {
     )
   ).data;
 
-  if (!res.success) throw new Error(res.message || "Unknown error.");
+  // if (!res.success) throw new Error(res.message || "Unknown error.");
 
-  return res.response;
+  return res;
 };
