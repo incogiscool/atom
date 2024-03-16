@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import LogoBlack from "@/public/atom-black.svg";
 import Link from "next/link";

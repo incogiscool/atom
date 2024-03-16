@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { projectTitleMaxLength } from "@/lib/contants";
+import { AppContainer } from "@/components/containers/AppContainer";
 
 export function ProjectPage({ userDocument }: { userDocument: UserDocument }) {
   const router = useRouter();
@@ -45,50 +46,47 @@ export function ProjectPage({ userDocument }: { userDocument: UserDocument }) {
   }
 
   return (
-    <div className="flex gap-12">
-      <AppSidebarNav
-        active="projects"
-        email={userDocument.email}
-        name={userDocument.first_name}
-      />
-      <main className="flex-1 h-screen py-12 p-6">
-        <h1 className="font-semibold text-4xl">Projects</h1>
-        <div className="mt-12">
-          <DataTable columns={columns} data={userDocument.projects} />
-        </div>
+    <AppContainer
+      active="projects"
+      first_name={userDocument.first_name}
+      email={userDocument.email}
+    >
+      <h1 className="font-semibold text-4xl">Projects</h1>
+      <div className="mt-12">
+        <DataTable columns={columns} data={userDocument.projects} />
+      </div>
 
-        <Button className="w-full mt-4" onClick={() => setDialogOpen(true)}>
-          Create Project
-        </Button>
+      <Button className="w-full mt-4" onClick={() => setDialogOpen(true)}>
+        Create Project
+      </Button>
 
-        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Create project</DialogTitle>
-            </DialogHeader>
-            <div>
-              <form>
-                <div>
-                  <label>Project title</label>
-                  <Input
-                    type="text"
-                    className="mt-1"
-                    maxLength={projectTitleMaxLength}
-                    onChange={(e) => setProjectTitle(e.target.value)}
-                  />
-                </div>
-                <Button
-                  className="mt-6"
-                  disabled={isLoading}
-                  onClick={handleCreateProject}
-                >
-                  Create project
-                </Button>
-              </form>
-            </div>
-          </DialogContent>
-        </Dialog>
-      </main>
-    </div>
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Create project</DialogTitle>
+          </DialogHeader>
+          <div>
+            <form>
+              <div>
+                <label>Project title</label>
+                <Input
+                  type="text"
+                  className="mt-1"
+                  maxLength={projectTitleMaxLength}
+                  onChange={(e) => setProjectTitle(e.target.value)}
+                />
+              </div>
+              <Button
+                className="mt-6"
+                disabled={isLoading}
+                onClick={handleCreateProject}
+              >
+                Create project
+              </Button>
+            </form>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </AppContainer>
   );
 }
