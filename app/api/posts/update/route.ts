@@ -1,8 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ApiResponse } from "../../auth/signup/route";
-import { ProjectsRef, connectToDatabase } from "@/lib/server/mongo/init";
+import {
+  ProjectsRef,
+  UserDocumentsRef,
+  connectToDatabase,
+} from "@/lib/server/mongo/init";
 import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
-import { maxInputLength, projectTitleMaxLength } from "@/lib/contants";
+import {
+  maxInputLength,
+  planDetails,
+  projectTitleMaxLength,
+} from "@/lib/contants";
 
 export type UpdatePostRequestParams = {
   title?: string;
@@ -64,6 +72,19 @@ export const PATCH = async (request: NextRequest) => {
     const post = project.posts.find((post) => post.id === post_id);
 
     if (!post) throw new Error("Could not find post.");
+
+    const userDoc = await UserDocumentsRef.findOne({ _id: user.id });
+
+    if (!userDoc) throw new Error("Could not find user.");
+
+    const userPlan = planDetails.find((plan) => plan.id === userDoc.plan);
+
+    if (!userPlan) throw new Error("Invalid plan.");
+
+    if (body && body.length > userPlan.max_body_length)
+      throw new Error(
+        `Body cannot be more than ${userPlan.max_body_length} characters.`
+      );
 
     const filteredBody: UpdatePostRequestParams = {};
 

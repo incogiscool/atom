@@ -21,7 +21,6 @@ export const AtomBody = async ({
     <div className={className}>
       <Markdown
         remarkPlugins={[remarkGfm, remarkMath]}
-        //@ts-expect-error
         rehypePlugins={[rehypeKatex]}
       >
         {sanitized}
