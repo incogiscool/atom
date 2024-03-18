@@ -31,9 +31,9 @@ export const MainContainer = ({ children }: { children: ReactNode }) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="px-20 p-8 pb-12">
+      <div className="px-20 pt-8">
         <main className="h-full flex-1 py-36">{children}</main>
-        <footer className="h-[100px] bg-black gap-8 p-4 rounded-full flex items-center justify-center">
+        <footer className="h-[200px] bg-black gap-8 p-4 rounded-tr-lg rounded-tl-lg flex items-center justify-center">
           <Link href={"/"}>
             <Image
               src={LogoBlack}
