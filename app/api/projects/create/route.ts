@@ -8,7 +8,7 @@ import {
 import { generateProjectKey } from "@/lib/server/utils/generateProjectKey";
 import { v4 as uuidv4 } from "uuid";
 import mongoose from "mongoose";
-import { projectTitleMaxLength } from "@/lib/contants";
+import { planDetails, projectTitleMaxLength } from "@/lib/contants";
 import { Project } from "@/lib/types";
 import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 
@@ -33,6 +33,19 @@ export const POST = async (request: Request) => {
     const project_id = uuidv4();
 
     const mongooseSession = await mongoose.startSession();
+
+    const userDoc = await UserDocumentsRef.findOne({ _id: user.id });
+
+    if (!userDoc) throw new Error("Could not find user.");
+
+    const userPlan = planDetails.find((plan) => plan.id === userDoc.plan);
+
+    if (!userPlan) throw new Error("Invalid plan.");
+
+    if (userPlan.max_projects <= userDoc.projects.length)
+      throw new Error(
+        `Cannot create more than ${userPlan.max_projects} projects.`
+      );
 
     let project: Project | null = null;
 

@@ -49,7 +49,7 @@ export const planDetails: {
     description: "For writers who are just getting started.",
     max_docs: 100,
     max_body_length: 10000,
-    max_projects: 5,
+    max_projects: 2,
     features: [
       "2 projects",
       "100 posts per project",
