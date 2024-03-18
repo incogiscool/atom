@@ -12,6 +12,7 @@ const SettingsPage = async () => {
           email={userDocument.email}
           first_name={userDocument.first_name}
           active="settings"
+          plan={userDocument.plan}
         >
           <h1 className="font-semibold text-4xl">Settings</h1>
 

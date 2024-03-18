@@ -11,6 +11,7 @@ const Page = async () => {
           email={userDocument.email}
           first_name={userDocument.first_name}
           active="billing"
+          plan={userDocument.plan}
         >
           <h1 className="font-semibold text-4xl">Billing</h1>
 

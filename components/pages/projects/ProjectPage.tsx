@@ -50,6 +50,7 @@ export function ProjectPage({ userDocument }: { userDocument: UserDocument }) {
       active="projects"
       first_name={userDocument.first_name}
       email={userDocument.email}
+      plan={userDocument.plan}
     >
       <h1 className="font-semibold text-4xl">Projects</h1>
       <div className="mt-12">

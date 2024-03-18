@@ -1,10 +1,10 @@
 "use client";
-
+import { MdOutlineVerified } from "react-icons/md";
 import Image from "next/image";
 import LogoBlack from "@/public/atom-black.svg";
 import Link from "next/link";
 import { navOptions } from "@/lib/contants";
-import { NavOptionIds } from "@/lib/types";
+import { NavOptionIds, Plan } from "@/lib/types";
 import {
   Popover,
   PopoverContent,
@@ -18,10 +18,12 @@ export const AppSidebarNav = ({
   active,
   email,
   name,
+  plan,
 }: {
   active: NavOptionIds;
   email: string;
   name: string;
+  plan: Plan;
 }) => {
   const router = useRouter();
 
@@ -57,24 +59,32 @@ export const AppSidebarNav = ({
         </div>
       </div>
 
-      <Popover>
-        <PopoverTrigger>
-          <div className="w-full border text-left hover:bg-slate-100 transition p-3 rounded-lg text-slate-800">
-            <p className="font-medium text-sm">{name}</p>
-            <p className="text-slate-800 text-[12px] text-wrap break-all">
-              {email}
-            </p>
+      <div>
+        {plan === "single" && (
+          <div className="my-6 flex gap-4 w-[100px] items-center border p-2 rounded-lg">
+            <MdOutlineVerified />
+            <p className="text-sm text-wrap">Upgrade to Business</p>
           </div>
-        </PopoverTrigger>
-        <PopoverContent className="w-[200px]">
-          <p
-            className="w-full hover:bg-slate-100 rounded-lg transition p-1 px-2 cursor-pointer"
-            onClick={signout}
-          >
-            Sign out
-          </p>
-        </PopoverContent>
-      </Popover>
+        )}
+        <Popover>
+          <PopoverTrigger>
+            <div className="w-full border text-left hover:bg-slate-100 transition p-3 rounded-lg text-slate-800">
+              <p className="font-medium text-sm">{name}</p>
+              <p className="text-slate-800 text-[12px] text-wrap break-all">
+                {email}
+              </p>
+            </div>
+          </PopoverTrigger>
+          <PopoverContent className="w-[200px]">
+            <p
+              className="w-full hover:bg-slate-100 rounded-lg transition p-1 px-2 cursor-pointer"
+              onClick={signout}
+            >
+              Sign out
+            </p>
+          </PopoverContent>
+        </Popover>
+      </div>
     </nav>
   );
 };
