@@ -2,7 +2,7 @@ import { GoDatabase } from "react-icons/go";
 import { IoSettingsOutline, IoWalletOutline } from "react-icons/io5";
 import { Plan } from "./types";
 
-export const plans = ["free", "business"] as const;
+export const plans = ["single", "business"] as const;
 
 export const navOptions = [
   {
@@ -38,21 +38,40 @@ export const planDetails: {
   description: string;
   max_docs: number;
   max_body_length: number;
+  features: string[];
+  max_projects: number;
+  active: boolean;
 }[] = [
   {
-    title: "Free",
-    id: "free",
+    title: "Single",
+    id: "single",
     price: null,
     description: "idk tis is the free pla",
     max_docs: 100,
     max_body_length: 10000,
+    max_projects: 5,
+    features: [
+      "2 projects",
+      "100 posts per project",
+      "10,000 character body length",
+    ],
+    active: false,
   },
   {
     title: "Business",
     id: "business",
     price: 12,
     description: "bruh thsi the busiens plan",
-    max_docs: 1000,
+    max_docs: 5000,
     max_body_length: 100000,
+    max_projects: 5,
+    features: [
+      "5 projects",
+      "5,000 posts per project",
+      "100,000 character body length",
+      "No watermark",
+      "Priority support",
+    ],
+    active: false,
   },
 ];

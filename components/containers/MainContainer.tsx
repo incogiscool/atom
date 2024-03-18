@@ -31,16 +31,18 @@ export const MainContainer = ({ children }: { children: ReactNode }) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="px-20 p-8 pt-36 pb-12">
-        <main className="h-full flex-1">{children}</main>
+      <div className="px-20 p-8 pb-12">
+        <main className="h-full flex-1 py-36">{children}</main>
         <footer className="h-[100px] bg-black gap-8 p-4 rounded-full flex items-center justify-center">
-          <Image
-            src={LogoBlack}
-            width={50}
-            height={50}
-            alt="logo-black"
-            className="invert"
-          />
+          <Link href={"/"}>
+            <Image
+              src={LogoBlack}
+              width={50}
+              height={50}
+              alt="logo-black"
+              className="invert"
+            />
+          </Link>
           <ul className="flex gap-4">
             {footerOptions.map((option) => (
               <Link href={option.link}>

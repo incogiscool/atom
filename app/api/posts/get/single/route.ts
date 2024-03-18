@@ -40,7 +40,7 @@ export const GET = async (request: NextRequest) => {
     const watermark =
       "\n\nThis post was created using [Atom](https://www.atomcms.dev)";
 
-    if (planType === "free") post.body = post.body + watermark;
+    if (planType === "single") post.body = post.body + watermark;
 
     return NextResponse.json<ApiResponse<Post>>({
       response: post,
