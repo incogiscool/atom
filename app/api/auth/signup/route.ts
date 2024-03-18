@@ -80,7 +80,7 @@ export const POST = async (request: NextRequest) => {
         [
           {
             email,
-            plan: "free",
+            plan: "single",
             first_name: first_name.trim(),
             last_name: last_name.trim(),
             _id: uid,
