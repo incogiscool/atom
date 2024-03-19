@@ -3,9 +3,11 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { User } from "lucia";
+import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 
-export const Navbar = ({ user }: { user: User | null }) => {
+export const Navbar = async () => {
+  const { user } = await validateRequest();
+
   const navOptions = [
     {
       title: "Get Started",

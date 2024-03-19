@@ -3,11 +3,8 @@ import { Navbar } from "../nav/Navbar";
 import Image from "next/image";
 import LogoBlack from "@/public/atom-black.svg";
 import Link from "next/link";
-import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 
 export const MainContainer = async ({ children }: { children: ReactNode }) => {
-  const { user } = await validateRequest();
-
   const footerOptions = [
     {
       title: "Get Started",
@@ -33,7 +30,7 @@ export const MainContainer = async ({ children }: { children: ReactNode }) => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar user={user} />
+      <Navbar />
       <div className="px-20 pt-8">
         <main className="h-full flex-1 py-36">{children}</main>
         <footer className="h-[200px] bg-black gap-8 p-4 rounded-tr-lg rounded-tl-lg flex items-center justify-center">
