@@ -1,9 +1,11 @@
 import LogoBlack from "@/public/atom-black.svg";
+import { FaArrowRightLong } from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { User } from "lucia";
 
-export const Navbar = () => {
+export const Navbar = ({ user }: { user: User | null }) => {
   const navOptions = [
     {
       title: "Get Started",
@@ -36,14 +38,22 @@ export const Navbar = () => {
             })}
           </ul>
         </div>
-        <div className="flex gap-6 items-center">
-          <Link href={"/signin"}>
-            <p>Sign in</p>
+        {user ? (
+          <Link href={"/app"}>
+            <Button className="flex items-center gap-2">
+              Go to app <FaArrowRightLong />
+            </Button>
           </Link>
-          <Link href={"/signup"}>
-            <Button className="rounded-lg">Sign up</Button>
-          </Link>
-        </div>
+        ) : (
+          <div className="flex gap-6 items-center">
+            <Link href={"/signin"}>
+              <p>Sign in</p>
+            </Link>
+            <Link href={"/signup"}>
+              <Button className="rounded-lg">Sign up</Button>
+            </Link>
+          </div>
+        )}
       </nav>
     </div>
   );
