@@ -1,18 +1,19 @@
 import { MainContainer } from "@/components/containers/MainContainer";
 import { NpmPackageComponent } from "@/components/misc/NpmPackageComponent";
+import { TracingBeam } from "@/components/misc/tracing-beam";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const Home = () => {
   return (
-    <MainContainer>
+    <MainContainer className="flex flex-col gap-36">
       <section className="h-screen items-center  flex flex-col">
         <h1 className="text-6xl font-bold max-w-2xl text-center">
           Ship blogs and articles in minutes.
         </h1>
         <p className="mt-4">
-          Create, edit, and publish a fully functioning blog in NextJS by adding
-          2 lines of code.
+          Create, edit, and publish a fully functioning blog in NextJS quickly
+          using Atom.
         </p>
         <div className="space-y-4 mt-8">
           <Link href={"/signin"}>
@@ -36,6 +37,11 @@ const Home = () => {
             }}
           ></iframe>
         </div>
+      </section>
+      <section>
+        <h1 className="text-4xl text-center font-semibold">
+          Get started with 2 lines of code
+        </h1>
       </section>
     </MainContainer>
   );

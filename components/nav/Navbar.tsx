@@ -4,8 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
+import { connectToDatabase } from "@/lib/server/mongo/init";
 
 export const Navbar = async () => {
+  await connectToDatabase();
   const { user } = await validateRequest();
 
   const navOptions = [
