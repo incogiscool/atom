@@ -1,5 +1,6 @@
 import { MainContainer } from "@/components/containers/MainContainer";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Home = () => {
   return (
@@ -13,7 +14,9 @@ const Home = () => {
           2 lines of code.
         </p>
         <div className="flex gap-4 mt-8">
-          <Button>Get started</Button>
+          <Link href={"/signin"}>
+            <Button>Get started</Button>
+          </Link>
           <Button variant={"outline"}>See demo</Button>
         </div>
         <div className="mt-12">
@@ -24,9 +27,10 @@ const Home = () => {
             loading="lazy"
             allowFullScreen={true}
             allow="clipboard-write"
+            className="bg-black p-2 rounded-lg"
             style={{
               width: "1100px",
-              height: "800px",
+              height: "575px",
               colorScheme: "light",
             }}
           ></iframe>
