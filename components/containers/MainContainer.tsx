@@ -32,8 +32,8 @@ export const MainContainer = async ({ children }: { children: ReactNode }) => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <div className="px-20 pt-8">
-        <main className="h-full flex-1 py-36">{children}</main>
-        <footer className="h-[200px] bg-black gap-8 p-4 rounded-tr-lg rounded-tl-lg flex items-center justify-center">
+        <main className="h-full flex-1 my-36">{children}</main>
+        <footer className="h-[100px] bg-black gap-8 p-4 rounded-tr-lg rounded-tl-lg flex items-center justify-center">
           <Link href={"/"}>
             <Image
               src={LogoBlack}

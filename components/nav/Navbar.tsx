@@ -10,8 +10,8 @@ export const Navbar = async () => {
 
   const navOptions = [
     {
-      title: "Get Started",
-      link: "/get-started",
+      title: "Documentation",
+      link: "/documentation",
     },
     {
       title: "Pricing",

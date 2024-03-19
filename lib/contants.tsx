@@ -75,3 +75,5 @@ export const planDetails: {
     active: false,
   },
 ];
+
+export const npmPackage = "npm install atom-nextjs@latest";

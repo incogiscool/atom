@@ -1,4 +1,5 @@
 import { MainContainer } from "@/components/containers/MainContainer";
+import { NpmPackageComponent } from "@/components/misc/NpmPackageComponent";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -13,11 +14,12 @@ const Home = () => {
           Create, edit, and publish a fully functioning blog in NextJS by adding
           2 lines of code.
         </p>
-        <div className="flex gap-4 mt-8">
+        <div className="space-y-4 mt-8">
           <Link href={"/signin"}>
-            <Button>Get started</Button>
+            <Button className="w-full">Get started</Button>
           </Link>
-          <Button variant={"outline"}>See demo</Button>
+          <NpmPackageComponent />
+          {/* <Button variant={"outline"}>See demo</Button> */}
         </div>
         <div className="mt-12">
           <iframe
@@ -27,9 +29,8 @@ const Home = () => {
             loading="lazy"
             allowFullScreen={true}
             allow="clipboard-write"
-            className="bg-black p-2 rounded-lg"
             style={{
-              width: "1100px",
+              width: "1000px",
               height: "575px",
               colorScheme: "light",
             }}
