@@ -14,12 +14,10 @@ export const generateMetadata = async ({ params }: BlogParams) => {
   return metadata;
 };
 
-const BlogPage = async ({ params }: BlogParams) => {
+export default async function BlogPage({ params }: BlogParams) {
   return (
     <MainContainer>
       <Atom apiKey={process.env.TEST_API_KEY!} postId={params.id} />
     </MainContainer>
   );
-};
-
-export default BlogPage;
+}

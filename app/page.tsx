@@ -1,13 +1,97 @@
 import { MainContainer } from "@/components/containers/MainContainer";
 import { NpmPackageComponent } from "@/components/misc/NpmPackageComponent";
-import { TracingBeam } from "@/components/misc/tracing-beam";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { atomOneLight as codeTheme } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
+const atomPageComponentString = `// app/blog/page.tsx
+
+import { AtomPage } from "@/atom/atom-components/AtomPage";
+import { MyAppContainer } from "@/...";
+
+export const metadata = {
+  title: "Blog",
+};
+
+export default function Blog() {
+  return (
+    <MyAppContainer>
+      <AtomPage baseRoute="/blog" apiKey={process.env.ATOM_API_KEY!} />
+    </MyAppContainer>
+  );
+}
+`;
+
+const atomBlogComponentString = `// app/blog/[id]/page.tsx
+
+import { Atom } from "@/atom/atom-components/Atom";
+import { generatePostMetadata } from "@/atom/lib/client/generatePostMetadata";
+import { MainContainer } from "@/...";
+
+export type BlogParams = { params: { id: string } };
+
+export const generateMetadata = async ({ params }: BlogParams) => {
+  const metadata = await generatePostMetadata(
+    process.env.TEST_API_KEY!,
+    params.id
+  );
+
+  return metadata;
+};
+
+export default async function BlogPage({ params }: BlogParams) {
+  return (
+    <MainContainer>
+      <Atom apiKey={process.env.TEST_API_KEY!} postId={params.id} />
+    </MainContainer>
+  );
+}
+`;
 
 const Home = () => {
+  const content = [
+    {
+      title: "Create your blog page route and add the blog page component.",
+      description:
+        "Create your blog file (/app/blog/page.tsx), import your API key, and our pre-made blog component. This will handle the blog page, where users can select what blog post to read.",
+      content: (
+        <SyntaxHighlighter
+          customStyle={{
+            fontSize: 12,
+            border: "1px solid #A9A9A9",
+            borderRadius: "8px",
+          }}
+          language="javascript"
+          style={codeTheme}
+        >
+          {atomPageComponentString}
+        </SyntaxHighlighter>
+      ),
+    },
+    {
+      title: "Create your post page route, and add the post component.",
+      description:
+        "Create your post file (/app/blog/[id]/page.tsx), import your API key, and our pre-made post component. This component will handle the page that includes your blog/post text.",
+      content: (
+        <SyntaxHighlighter
+          customStyle={{
+            fontSize: 12,
+            border: "1px solid #A9A9A9",
+            borderRadius: "8px",
+          }}
+          language="javascript"
+          style={codeTheme}
+        >
+          {atomBlogComponentString}
+        </SyntaxHighlighter>
+      ),
+    },
+  ];
+
   return (
     <MainContainer className="flex flex-col gap-36">
-      <section className="h-screen items-center  flex flex-col">
+      <section className="h-screen items-center flex flex-col">
         <h1 className="text-6xl font-bold max-w-2xl text-center">
           Ship blogs and articles in minutes.
         </h1>
@@ -48,8 +132,23 @@ const Home = () => {
       </section>
       <section>
         <h1 className="text-4xl text-center font-semibold">
-          Get started with 2 lines of code
+          Get started with just two files
         </h1>
+        <div className="mt-20 flex flex-col gap-12">
+          {content.map((item, index) => (
+            <div
+              className={`flex justify-between items-center gap-4 flex-wrap ${
+                index % 2 === 0 ? "" : "flex-row-reverse"
+              }`}
+            >
+              <div className="max-w-xl">
+                <h3 className="text-3xl font-semibold">{item.title}</h3>
+                <p className="mt-2">{item.description}</p>
+              </div>
+              {item.content}
+            </div>
+          ))}
+        </div>
       </section>
     </MainContainer>
   );

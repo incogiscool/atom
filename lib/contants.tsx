@@ -70,7 +70,7 @@ export const planDetails: {
       "2,500 posts per project",
       "50,000 character body length",
       "No watermark",
-      "Priority support",
+      "Dedicated support",
     ],
     active: false,
   },
