@@ -33,7 +33,7 @@ export type BlogParams = { params: { id: string } };
 
 export const generateMetadata = async ({ params }: BlogParams) => {
   const metadata = await generatePostMetadata(
-    process.env.TEST_API_KEY!,
+    process.env.ATOM_API_KEY!,
     params.id
   );
 
@@ -43,7 +43,7 @@ export const generateMetadata = async ({ params }: BlogParams) => {
 export default async function BlogPage({ params }: BlogParams) {
   return (
     <MyAppContainer>
-      <Atom apiKey={process.env.TEST_API_KEY!} postId={params.id} />
+      <Atom apiKey={process.env.ATOM_API_KEY!} postId={params.id} />
     </MyAppContainer>
   );
 }
@@ -88,6 +88,8 @@ const Home = () => {
       ),
     },
   ];
+
+  const twitterWidgeTweetIds = ["1757747417238171941", "1756975468627014116"];
 
   return (
     <MainContainer className="flex flex-col gap-36">
@@ -147,6 +149,15 @@ const Home = () => {
               </div>
               {item.content}
             </div>
+          ))}
+        </div>
+      </section>
+      <section className="text-center items-center justify-center flex flex-col">
+        <h1 className="text-4xl font-semibold">Not convinced yet?</h1>
+        <p className="text-slate-500">See what others think about Atom </p>
+        <div>
+          {twitterWidgeTweetIds.map((id) => (
+            <>{id}</>
           ))}
         </div>
       </section>
