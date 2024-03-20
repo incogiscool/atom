@@ -5,10 +5,16 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 import { connectToDatabase } from "@/lib/server/mongo/init";
+import { User } from "lucia";
 
 export const Navbar = async () => {
-  await connectToDatabase();
-  const { user } = await validateRequest();
+  let user: User | null = null;
+
+  try {
+    await connectToDatabase();
+    const res = await validateRequest();
+    user = res.user;
+  } catch (err: any) {}
 
   const navOptions = [
     {
