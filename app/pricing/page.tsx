@@ -46,7 +46,7 @@ const Page = () => {
                   plan.active && "bg-white text-black hover:bg-slate-50"
                 }`}
               >
-                Get started
+                {plan.disabled ? "Coming soon" : "Get started"}
               </Button>
               <ul className="space-y-1">
                 {plan.features.map((feature) => (

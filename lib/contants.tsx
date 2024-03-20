@@ -41,6 +41,7 @@ export const planDetails: {
   features: string[];
   max_projects: number;
   active: boolean;
+  disabled: boolean;
 }[] = [
   {
     title: "Single",
@@ -56,6 +57,7 @@ export const planDetails: {
       "10,000 character body length",
     ],
     active: false,
+    disabled: false,
   },
   {
     title: "Business",
@@ -73,6 +75,7 @@ export const planDetails: {
       "Dedicated support",
     ],
     active: false,
+    disabled: true,
   },
 ];
 
