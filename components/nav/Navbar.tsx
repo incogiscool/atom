@@ -1,5 +1,5 @@
 import LogoBlack from "@/public/atom-black.svg";
-import { FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowRightLong, FaGithub } from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
@@ -42,22 +42,28 @@ export const Navbar = async () => {
             })}
           </ul>
         </div>
-        {user ? (
-          <Link href={"/app"}>
-            <Button className="flex items-center gap-2">
-              Go to app <FaArrowRightLong />
-            </Button>
-          </Link>
-        ) : (
-          <div className="flex gap-6 items-center">
-            <Link href={"/signin"}>
-              <p>Sign in</p>
+        <div className="flex gap-6 items-center">
+          <a href="https://github.com/incogiscool/atom" target="_blank">
+            <FaGithub fontSize={24} />
+          </a>
+
+          {user ? (
+            <Link href={"/app"}>
+              <Button className="flex items-center gap-2">
+                Go to app <FaArrowRightLong />
+              </Button>
             </Link>
-            <Link href={"/signup"}>
-              <Button className="rounded-lg">Sign up</Button>
-            </Link>
-          </div>
-        )}
+          ) : (
+            <div className="flex gap-6 items-center">
+              <Link href={"/signin"}>
+                <p>Sign in</p>
+              </Link>
+              <Link href={"/signup"}>
+                <Button className="rounded-lg">Sign up</Button>
+              </Link>
+            </div>
+          )}
+        </div>
       </nav>
     </div>
   );

@@ -1,3 +1,4 @@
+"use server";
 import { ClientPost } from "@/app/api/projects/get/single/client/route";
 import Link from "next/link";
 import { LuDot } from "react-icons/lu";

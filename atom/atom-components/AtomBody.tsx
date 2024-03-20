@@ -1,3 +1,4 @@
+"use server";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import sanitizeHtml from "sanitize-html";
 import { marked } from "marked";
