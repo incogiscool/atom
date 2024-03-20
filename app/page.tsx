@@ -22,7 +22,7 @@ const Home = () => {
           <NpmPackageComponent />
           {/* <Button variant={"outline"}>See demo</Button> */}
         </div>
-        <div className="mt-12">
+        <div className="mt-12 relative">
           <iframe
             src="https://demo.arcade.software/HoopYQB3bkPgqxaXQhkt?embed&show_copy_link=true"
             title="Atom - The NextJS CMS"
@@ -31,11 +31,19 @@ const Home = () => {
             allowFullScreen={true}
             allow="clipboard-write"
             style={{
-              width: "1000px",
-              height: "575px",
+              width: "900px",
+              height: "475px",
               colorScheme: "light",
+              position: "relative",
+              zIndex: "1", // Ensure the iframe is on top
             }}
-          ></iframe>
+          />
+          <div
+            className="absolute bg-gradient-to-r from-pink-500 to-orange-500 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4/6 h-4/6 blur-[100px]"
+            style={{
+              zIndex: "0", // Ensure the gradient div is behind the iframe
+            }}
+          />
         </div>
       </section>
       <section>
