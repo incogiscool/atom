@@ -3,7 +3,7 @@ import { NpmPackageComponent } from "@/components/misc/NpmPackageComponent";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { atomOneLight as codeTheme } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { atomOneDark as codeTheme } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { Tweet } from "react-tweet";
 
 const atomPageComponentString = `// app/blog/page.tsx
@@ -56,37 +56,13 @@ const Home = () => {
       title: "Create your blog page route and add the blog page component.",
       description:
         "Create your blog file (/app/blog/page.tsx), import your API key, and our pre-made blog component. This will handle the blog page, where users can select what blog post to read.",
-      content: (
-        <SyntaxHighlighter
-          customStyle={{
-            fontSize: 12,
-            border: "1px solid #A9A9A9",
-            borderRadius: "8px",
-          }}
-          language="javascript"
-          style={codeTheme}
-        >
-          {atomPageComponentString}
-        </SyntaxHighlighter>
-      ),
+      code: atomPageComponentString,
     },
     {
       title: "Create your post page route, and add the post component.",
       description:
         "Create your post file (/app/blog/[id]/page.tsx), import your API key, and our pre-made post component. This component will handle the page that includes your blog/post text.",
-      content: (
-        <SyntaxHighlighter
-          customStyle={{
-            fontSize: 12,
-            border: "1px solid #A9A9A9",
-            borderRadius: "8px",
-          }}
-          language="javascript"
-          style={codeTheme}
-        >
-          {atomBlogComponentString}
-        </SyntaxHighlighter>
-      ),
+      code: atomBlogComponentString,
     },
   ];
 
@@ -155,7 +131,18 @@ const Home = () => {
                 <h3 className="text-3xl font-semibold">{item.title}</h3>
                 <p className="mt-2">{item.description}</p>
               </div>
-              {item.content}
+              <SyntaxHighlighter
+                customStyle={{
+                  fontSize: 12,
+                  // border: "1px solid #A9A9A9",
+                  borderRadius: "8px",
+                  padding: "12px",
+                }}
+                language="javascript"
+                style={codeTheme}
+              >
+                {item.code}
+              </SyntaxHighlighter>
             </div>
           ))}
         </div>
