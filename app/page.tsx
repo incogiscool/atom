@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneLight as codeTheme } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { Tweet } from "react-tweet";
 
 const atomPageComponentString = `// app/blog/page.tsx
 
@@ -89,7 +90,14 @@ const Home = () => {
     },
   ];
 
-  const twitterWidgeTweetIds = ["1757747417238171941", "1756975468627014116"];
+  const twitterWidgeTweetIds = [
+    "1757747417238171941",
+    "1756975468627014116",
+    "1757747417238171941",
+    "1756975468627014116",
+    "1757747417238171941",
+    "1756975468627014116",
+  ];
 
   return (
     <MainContainer className="flex flex-col gap-36">
@@ -136,10 +144,10 @@ const Home = () => {
         <h1 className="text-4xl text-center font-semibold">
           Get started with just two files
         </h1>
-        <div className="mt-20 flex flex-col gap-12">
+        <div className="mt-20 flex flex-col gap-12 items-center justify-center">
           {content.map((item, index) => (
             <div
-              className={`flex justify-between items-center gap-4 flex-wrap ${
+              className={`flex gap-32 items-center flex-wrap ${
                 index % 2 === 0 ? "" : "flex-row-reverse"
               }`}
             >
@@ -155,10 +163,21 @@ const Home = () => {
       <section className="text-center items-center justify-center flex flex-col">
         <h1 className="text-4xl font-semibold">Not convinced yet?</h1>
         <p className="text-slate-500">See what others think about Atom </p>
-        <div>
+        <div className="flex flex-wrap gap-12 justify-center items-start text-left">
           {twitterWidgeTweetIds.map((id) => (
-            <>{id}</>
+            <Tweet id={id} />
           ))}
+        </div>
+      </section>
+      <section className="items-center flex-col flex justify-center">
+        <div className="flex items-center justify-center gap-12  p-10 rounded-lg border">
+          <div>
+            <p className="text-slate-500">Ready to get started?</p>
+            <h1 className="text-4xl font-semibold">Sign up for free</h1>
+          </div>
+          <Link href={"/signup"}>
+            <Button>Get started</Button>
+          </Link>
         </div>
       </section>
     </MainContainer>
