@@ -1,4 +1,4 @@
-import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
+import { validateRequest } from "@/lib/server/lucia/functions/validaterequest";
 import { NextRequest, NextResponse } from "next/server";
 import { ApiResponse } from "../../auth/signup/route";
 import {
