@@ -50,7 +50,7 @@ export const DELETE = async (request: Request) => {
         { session: mongooseSession }
       );
       await SessionRef.deleteMany(
-        { uid: user.id },
+        { user_id: user.id },
         { session: mongooseSession }
       );
     });

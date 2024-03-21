@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 export const sessionSchema = new Schema<Session>({
-  uid: {
+  user_id: {
     type: String,
     required: true,
   },

@@ -1,4 +1,5 @@
 import { AppContainer } from "@/components/containers/AppContainer";
+import { DeleteUserModal } from "@/components/modals/DeleteUserModal";
 import { SettingsForm } from "@/components/pages/settings/SettingsForm";
 import { fetchUser } from "@/lib/server/functions/user/fetchUser";
 
@@ -16,8 +17,9 @@ const SettingsPage = async () => {
         >
           <h1 className="font-semibold text-4xl">Settings</h1>
 
-          <div className="mt-12">
+          <div className="mt-12 space-y-8">
             <SettingsForm userDocument={userDocument} />
+            <DeleteUserModal />
           </div>
         </AppContainer>
       ) : (

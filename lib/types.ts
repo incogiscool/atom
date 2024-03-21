@@ -58,7 +58,7 @@ export type UserDocument = {
 };
 
 export type Session = {
-  uid: string;
+  user_id: string;
   expires_at: Date;
 };
 
