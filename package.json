@@ -2,11 +2,13 @@
   "name": "atom",
   "description": "Create, edit, and publish a fully functioning blog in NextJS with components.",
   "keywords": [
-    "blog",
+    "atom",
+    "nextjs",
     "cms",
-    "content management system",
-    "NextJS",
-    "blog engine"
+    "content-management-system",
+    "reactjs",
+    "blog",
+    "blog-engine"
   ],
   "author": {
     "name": "Adam El Taha",
@@ -20,6 +22,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/incogiscool/atom.git"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
