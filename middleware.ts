@@ -1,7 +1,8 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { connectToDatabase } from "./lib/server/mongo/init";
-import { validateRequest } from "./lib/server/lucia/functions/validaterequest";
 import { redirect } from "next/navigation";
+import { ratelimit } from "./lib/server/redis/init";
+import { ApiResponse } from "./app/api/auth/signup/route";
 
 // This function can be marked `async` if using `await` inside
 export default async function middleware(request: NextRequest) {
@@ -16,14 +17,26 @@ export default async function middleware(request: NextRequest) {
   // );
 
   //add rate limiting and protect paths
+  const ip = request.ip ?? "127.0.0.1";
 
-  try {
-    if (requestPath.startsWith("/api")) {
+  if (requestPath.startsWith("/api")) {
+    try {
+      const { success } = await ratelimit.limit(ip);
+
+      if (!success) throw new Error("Too many requests.");
+    } catch (err: any) {
+      console.log(err);
+
+      return NextResponse.json<ApiResponse>({
+        response: null,
+        success: false,
+        message: err.message || err,
+      });
     }
-  } catch (err: any) {}
+  }
 }
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/api"],
+  matcher: ["/api/:path*"],
 };

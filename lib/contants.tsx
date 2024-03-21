@@ -68,4 +68,4 @@ export const planDetails: PlanDetailsPlan[] = [
   },
 ];
 
-export const npmPackage = "npm install atom-nextjs@latest";
+export const npmPackage = "npx atom-nextjs@latest init";

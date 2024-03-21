@@ -3,7 +3,7 @@ import { FaArrowRightLong, FaGithub } from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
+import { validateRequest } from "@/lib/server/lucia/functions/validaterequest";
 import { connectToDatabase } from "@/lib/server/mongo/init";
 import { User } from "lucia";
 
@@ -18,8 +18,8 @@ export const Navbar = async () => {
 
   const navOptions = [
     {
-      title: "Documentation",
-      link: "/documentation",
+      title: "Get started",
+      link: "/blog/id-rigthhere",
     },
     {
       title: "Pricing",
@@ -39,6 +39,10 @@ export const Navbar = async () => {
             <Image src={LogoBlack} width={40} height={40} alt="logo-black" />
           </Link>
           <ul className="flex gap-6 items-center">
+            {/* <a href="youtubevideo" target="_blank">
+              <li>Tutorial</li>
+            </a> */}
+
             {navOptions.map((option) => {
               return (
                 <Link href={option.link}>
