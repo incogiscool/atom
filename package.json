@@ -1,5 +1,18 @@
 {
   "name": "atom",
+  "description": "Create, edit, and publish a fully functioning blog in NextJS with components.",
+  "keywords": [
+    "blog",
+    "cms",
+    "content management system",
+    "NextJS",
+    "blog engine"
+  ],
+  "author": {
+    "name": "Adam El Taha",
+    "email": "hello.atomcms@gmail.com"
+  },
+  "license": "Apache-2.0",
   "version": "0.1.0",
   "private": true,
   "scripts": {
