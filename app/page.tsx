@@ -123,7 +123,7 @@ const Home = () => {
         <div className="mt-20 flex flex-col gap-12 items-center justify-center">
           {content.map((item, index) => (
             <div
-              className={`flex gap-32 items-center flex-wrap ${
+              className={`flex gap-24 justify-center items-center flex-wrap ${
                 index % 2 === 0 ? "" : "flex-row-reverse"
               }`}
             >
@@ -131,18 +131,20 @@ const Home = () => {
                 <h3 className="text-3xl font-semibold">{item.title}</h3>
                 <p className="mt-2">{item.description}</p>
               </div>
-              <SyntaxHighlighter
-                customStyle={{
-                  fontSize: 12,
-                  // border: "1px solid #A9A9A9",
-                  borderRadius: "8px",
-                  padding: "12px",
-                }}
-                language="javascript"
-                style={codeTheme}
-              >
-                {item.code}
-              </SyntaxHighlighter>
+              <div>
+                <SyntaxHighlighter
+                  customStyle={{
+                    // border: "1px solid #A9A9A9",
+                    borderRadius: "8px",
+                    padding: "12px",
+                    fontSize: "11px",
+                  }}
+                  language="javascript"
+                  style={codeTheme}
+                >
+                  {item.code}
+                </SyntaxHighlighter>
+              </div>
             </div>
           ))}
         </div>
