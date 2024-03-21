@@ -85,7 +85,7 @@ const Home = () => {
           Create, edit, and publish a fully functioning blog in NextJS quickly
           using Atom.
         </p>
-        <div className="space-y-4 mt-8">
+        <div className="space-y-4 mt-8 z-10">
           <Link href={"/signin"}>
             <Button className="w-full">Get started</Button>
           </Link>
