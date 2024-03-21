@@ -1,6 +1,5 @@
 import { ProjectComponent } from "@/components/pages/projects/ProjectComponent";
 import { getProject } from "@/lib/server/functions/projects/getProject";
-import { redirect } from "next/navigation";
 
 type ProjectPageParams = {
   params: {
