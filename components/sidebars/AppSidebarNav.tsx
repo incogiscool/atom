@@ -60,7 +60,7 @@ export const AppSidebarNav = ({
       </div>
 
       <div className="flex flex-col">
-        {plan === "single" && (
+        {/* {plan === "single" && (
           <Link
             href={"/app/settings/billing"}
             className="my-6 flex gap-4 items-center border p-2 py-3 rounded-lg hover:bg-slate-50 transition"
@@ -68,7 +68,7 @@ export const AppSidebarNav = ({
             <MdOutlineVerified />
             <p className="text-sm text-wrap">Upgrade to Business</p>
           </Link>
-        )}
+        )} */}
         <Popover>
           <PopoverTrigger>
             <div className="w-full border text-left hover:bg-slate-100 transition p-3 rounded-lg text-slate-800">
