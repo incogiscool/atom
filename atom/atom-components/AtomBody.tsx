@@ -1,7 +1,5 @@
 "use server";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import sanitizeHtml from "sanitize-html";
-import { marked } from "marked";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeKatex from "rehype-katex";
@@ -16,7 +14,6 @@ export const AtomBody = async ({
   body: string;
 }) => {
   const sanitized = sanitizeHtml(body);
-  // const parsed = await marked(sanitized);
 
   return (
     <div className={className}>
