@@ -63,3 +63,16 @@ export type Session = {
 };
 
 export type NavOptionIds = (typeof navOptions)[number]["id"];
+
+export type PlanDetailsPlan = {
+  title: string;
+  id: Plan;
+  price: number | null;
+  description: string;
+  max_docs: number;
+  max_body_length: number;
+  features: string[];
+  max_projects: number;
+  active: boolean;
+  disabled: boolean;
+};

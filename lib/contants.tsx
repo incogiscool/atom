@@ -1,6 +1,6 @@
 import { GoDatabase } from "react-icons/go";
 import { IoSettingsOutline, IoWalletOutline } from "react-icons/io5";
-import { Plan } from "./types";
+import { Plan, PlanDetailsPlan } from "./types";
 
 export const plans = ["single", "business"] as const;
 
@@ -31,18 +31,7 @@ export const projectTitleMaxLength = 50;
 export const baseAPIRoute = "http://localhost:3000/api";
 export const mongoDBURI = process.env.MONGO_DB_URI;
 
-export const planDetails: {
-  title: string;
-  id: Plan;
-  price: number | null;
-  description: string;
-  max_docs: number;
-  max_body_length: number;
-  features: string[];
-  max_projects: number;
-  active: boolean;
-  disabled: boolean;
-}[] = [
+export const planDetails: PlanDetailsPlan[] = [
   {
     title: "Single",
     id: "single",

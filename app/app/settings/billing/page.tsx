@@ -15,7 +15,9 @@ const Page = async () => {
         >
           <h1 className="font-semibold text-4xl">Billing</h1>
 
-          <div className="mt-12"></div>
+          <div className="mt-12">
+            <p>Coming soon...</p>
+          </div>
         </AppContainer>
       ) : (
         message
