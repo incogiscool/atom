@@ -1,0 +1,92 @@
+{
+  "version": "0.1.6",
+  "license": "Apache-2.0",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "description": "Build a blog in NextJS using components and Atom CMS.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/incogiscool/atom.git"
+  },
+  "keywords": [
+    "atom",
+    "nextjs",
+    "cms",
+    "content-management-system",
+    "reactjs",
+    "blog",
+    "blog-engine"
+  ],
+  "bugs": {
+    "url": "https://github.com/incogiscool/atom/issues"
+  },
+  "homepage": "https://github.com/incogiscool/atom#readme",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "atom-nextjs-test1",
+  "author": "incogiscool",
+  "module": "dist/atom-nextjs-test1.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/atom-nextjs-test1.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/atom-nextjs-test1.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^11.1.2",
+    "@types/jest": "^29.5.12",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.30",
+    "@types/react": "^18.2.67",
+    "@types/react-dom": "^18.2.22",
+    "husky": "^9.0.11",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "size-limit": "^11.1.2",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "next": "^14.1.4",
+    "react-icons": "^5.0.1",
+    "react-markdown": "^9.0.1",
+    "rehype-katex": "^7.0.0",
+    "remark-gfm": "^4.0.0",
+    "remark-math": "^6.0.0",
+    "sanitize-html": "^2.13.0"
+  }
+}
