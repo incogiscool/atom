@@ -37,11 +37,10 @@ export const Atom = async ({
 
                   {res.image && (
                     <div
-                      className="w-full h-auto rounded-xl"
+                      className="w-full sm:h-[450px] h-[150px] rounded-xl"
                       style={{
                         backgroundImage: `url(${res.image})`,
                         width: "100%",
-                        height: 450,
                         backgroundSize: "cover",
                         backgroundRepeat: "no-repeat",
                         backgroundPosition: "center",
