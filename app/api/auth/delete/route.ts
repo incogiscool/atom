@@ -1,5 +1,5 @@
 import { isPasswordValid } from "@/lib/server/encoding/isPasswordValid";
-import { validateRequest } from "@/lib/server/lucia/functions/validaterequest";
+import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 import {
   ProjectsRef,
   SessionRef,

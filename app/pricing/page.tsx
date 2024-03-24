@@ -20,7 +20,7 @@ const Page = () => {
         </div>
         <div className="mt-12 flex gap-12 justify-center">
           {planDetails.map((plan) => (
-            <PricingPlanCard plan={plan} />
+            <PricingPlanCard plan={plan} key={plan.id} />
           ))}
         </div>
       </div>

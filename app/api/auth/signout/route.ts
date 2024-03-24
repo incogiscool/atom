@@ -10,11 +10,7 @@ export const POST = async (request: Request) => {
     await connectToDatabase();
 
     const { session } = await validateRequest();
-    if (!session) {
-      return {
-        error: "Unauthorized",
-      };
-    }
+    if (!session) throw new Error("Not authorized.");
 
     await lucia.invalidateSession(session.id);
 

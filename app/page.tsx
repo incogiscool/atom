@@ -126,6 +126,7 @@ const Home = () => {
               className={`flex gap-24 justify-center items-center flex-wrap ${
                 index % 2 === 0 ? "" : "flex-row-reverse"
               }`}
+              key={item.title + index}
             >
               <div className="max-w-xl">
                 <h3 className="text-3xl font-semibold">{item.title}</h3>
@@ -154,7 +155,7 @@ const Home = () => {
         <p className="text-slate-500">See what others think about Atom </p>
         <div className="flex flex-wrap gap-12 justify-center items-start text-left">
           {twitterWidgeTweetIds.map((id) => (
-            <Tweet id={id} />
+            <Tweet key={id} id={id} />
           ))}
         </div>
       </section>

@@ -43,7 +43,7 @@ export const PricingPlanCard = ({ plan }: { plan: PlanDetailsPlan }) => {
       </Button>
       <ul className="space-y-1">
         {plan.features.map((feature) => (
-          <li className="flex gap-2 items-center">
+          <li className="flex gap-2 items-center" key={feature}>
             <span
               className={`flex items-center justify-center ${
                 plan.active ? "bg-white text-black" : "bg-black text-white"

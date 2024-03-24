@@ -3,7 +3,7 @@ import { FaArrowRightLong, FaGithub } from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { validateRequest } from "@/lib/server/lucia/functions/validaterequest";
+import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 import { connectToDatabase } from "@/lib/server/mongo/init";
 import { User } from "lucia";
 
@@ -45,7 +45,7 @@ export const Navbar = async () => {
 
             {navOptions.map((option) => {
               return (
-                <Link href={option.link}>
+                <Link href={option.link} key={option.link}>
                   <li>{option.title}</li>
                 </Link>
               );

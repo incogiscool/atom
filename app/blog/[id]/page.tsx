@@ -1,4 +1,3 @@
-"use server";
 import { Atom, generatePostMetadata } from "atom-nextjs";
 import { MainContainer } from "@/components/containers/MainContainer";
 
@@ -13,7 +12,9 @@ export const generateMetadata = async ({ params }: BlogParams) => {
   return metadata;
 };
 
-export default async function BlogPage({ params }: BlogParams) {
+export const dynamic = "force-dynamic";
+
+export default function BlogPage({ params }: BlogParams) {
   return (
     <MainContainer>
       <Atom projectKey={process.env.ATOM_PROJECT_KEY!} postId={params.id} />
