@@ -22,7 +22,7 @@ const config = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
-    "./atom/atom-components/*.{ts,tsx}",
+    "./node_modules/atom-nextjs/src/components/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
