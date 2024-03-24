@@ -7,7 +7,7 @@
     "dist",
     "src"
   ],
-  "description": "Build a blog in NextJS using components and Atom CMS.",
+  "description": "Build a blog in NextJS using components, TailwindCSS, and Atom CMS.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/incogiscool/atom.git"
