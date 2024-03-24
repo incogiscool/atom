@@ -1,4 +1,4 @@
-import { AtomPage } from "@/atom/atom-components/AtomPage";
+import { AtomPage } from "atom-nextjs";
 import { MainContainer } from "@/components/containers/MainContainer";
 import { Metadata } from "next";
 
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function Blog() {
   return (
     <MainContainer>
-      <AtomPage baseRoute="/blog" apiKey={process.env.TEST_API_KEY!} />
+      <AtomPage baseRoute="/blog" projectKey={process.env.ATOM_PROJECT_KEY!} />
     </MainContainer>
   );
 }
