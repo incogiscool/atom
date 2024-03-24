@@ -4,13 +4,13 @@ import { getProject } from '../lib/client/getProject';
 import { AtomPostCard } from './AtomPostCard';
 
 export const AtomPage = async ({
-  apiKey,
+  projectKey,
   baseRoute,
 }: {
-  apiKey: string;
+  projectKey: string;
   baseRoute: string;
 }) => {
-  const res = await getProject(apiKey);
+  const res = await getProject(projectKey);
   const project = res.response;
 
   return (

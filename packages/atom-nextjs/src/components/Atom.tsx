@@ -10,13 +10,13 @@ KEEP SERVERSIDE RENDERING BECAUSE OF API KEY
 */
 
 export const Atom = async ({
-  apiKey,
+  projectKey,
   postId,
 }: {
-  apiKey: string;
+  projectKey: string;
   postId: string;
 }) => {
-  const apires = await getPost(apiKey, postId);
+  const apires = await getPost(projectKey, postId);
   const res = apires.response;
 
   const publish_date = new Date(res?.createdAt || '');

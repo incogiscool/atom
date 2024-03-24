@@ -8,17 +8,17 @@ import { Tweet } from "react-tweet";
 
 const atomPageComponentString = `// app/blog/page.tsx
 
-import { AtomPage } from "@/atom/atom-components/AtomPage";
-import { MyAppContainer } from "@/...";
+import { AtomPage } from 'atom-nextjs';
+import { MyAppContainer } from '@/...';
 
 export const metadata = {
-  title: "Blog",
+  title: 'Blog',
 };
 
 export default function Blog() {
   return (
     <MyAppContainer>
-      <AtomPage baseRoute="/blog" apiKey={process.env.ATOM_API_KEY!} />
+      <AtomPage baseRoute="/blog" apiKey={process.env.ATOM_PROJECT_KEY!} />
     </MyAppContainer>
   );
 }
@@ -26,15 +26,14 @@ export default function Blog() {
 
 const atomBlogComponentString = `// app/blog/[id]/page.tsx
 
-import { Atom } from "@/atom/atom-components/Atom";
-import { generatePostMetadata } from "@/atom/lib/client/generatePostMetadata";
-import { MyAppContainer } from "@/...";
+import { Atom, generatePostMetadata } from 'atom-nextjs';
+import { MyAppContainer } from '@/...';
 
 export type BlogParams = { params: { id: string } };
 
 export const generateMetadata = async ({ params }: BlogParams) => {
   const metadata = await generatePostMetadata(
-    process.env.ATOM_API_KEY!,
+    process.env.ATOM_PROJECT_KEY!,
     params.id
   );
 
@@ -44,10 +43,11 @@ export const generateMetadata = async ({ params }: BlogParams) => {
 export default async function BlogPage({ params }: BlogParams) {
   return (
     <MyAppContainer>
-      <Atom apiKey={process.env.ATOM_API_KEY!} postId={params.id} />
+      <Atom apiKey={process.env.ATOM_PROJECT_KEY!} postId={params.id} />
     </MyAppContainer>
   );
 }
+
 `;
 
 const Home = () => {
