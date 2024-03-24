@@ -204,7 +204,12 @@ export const ProjectFormComponent = ({
           )}
         />
 
-        <Button disabled={loading}>Save changes</Button>
+        <div>
+          <Button disabled={loading}>Save changes</Button>
+          <p className="text-sm text-slate-500 mt-2">
+            Created: {new Date(openedPost.createdAt).toDateString()}
+          </p>
+        </div>
       </form>
     </Form>
   );

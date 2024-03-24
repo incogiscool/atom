@@ -38,7 +38,7 @@ export const MainContainer = async ({
   return (
     <div className={"min-h-screen flex flex-col"}>
       <Navbar />
-      <div className="sm:px-20 px-4 pt-8">
+      <div className="sm:px-20 px-4 pt-8 min-h-screen flex flex-col justify-between">
         <main className={cn("h-full flex-1 my-36", className)}>{children}</main>
         <footer className="h-[100px] bg-black gap-8 p-4 rounded-tr-lg rounded-tl-lg flex items-center justify-center">
           <Link href={"/"}>
