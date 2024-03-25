@@ -12,8 +12,6 @@ export const generateMetadata = async ({ params }: BlogParams) => {
   return metadata;
 };
 
-export const dynamic = "force-dynamic";
-
 export default function BlogPage({ params }: BlogParams) {
   return (
     <MainContainer>

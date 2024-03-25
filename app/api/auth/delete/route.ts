@@ -1,5 +1,4 @@
 import { isPasswordValid } from "@/lib/server/encoding/isPasswordValid";
-import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 import {
   ProjectsRef,
   SessionRef,
@@ -10,6 +9,7 @@ import {
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 import { ApiResponse } from "../signup/route";
+import { validateRequest } from "@/lib/server/lucia/functions/validate-request";
 
 export type DeleteUserRequestBody = {
   password: string;

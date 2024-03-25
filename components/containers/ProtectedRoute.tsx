@@ -1,4 +1,4 @@
-import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
+import { validateRequest } from "@/lib/server/lucia/functions/validate-request";
 import { connectToDatabase } from "@/lib/server/mongo/init";
 import { redirect } from "next/navigation";
 

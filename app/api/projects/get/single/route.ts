@@ -3,7 +3,7 @@ import { ProjectsRef, connectToDatabase } from "@/lib/server/mongo/init";
 import { ApiResponse } from "@/app/api/auth/signup/route";
 import { Project } from "@/lib/types";
 import { cookies } from "next/headers";
-import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
+import { validateRequest } from "@/lib/server/lucia/functions/validate-request";
 
 export const GET = async (request: NextRequest) => {
   try {

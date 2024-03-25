@@ -5,7 +5,7 @@ import {
   UserDocumentsRef,
   connectToDatabase,
 } from "@/lib/server/mongo/init";
-import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
+import { validateRequest } from "@/lib/server/lucia/functions/validate-request";
 import {
   maxInputLength,
   planDetails,

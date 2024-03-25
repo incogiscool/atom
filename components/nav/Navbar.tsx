@@ -3,7 +3,7 @@ import { FaArrowRightLong, FaGithub } from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
+import { validateRequest } from "@/lib/server/lucia/functions/validate-request";
 import { connectToDatabase } from "@/lib/server/mongo/init";
 import { User } from "lucia";
 

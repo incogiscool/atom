@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import mongoose from "mongoose";
 import { planDetails, projectTitleMaxLength } from "@/lib/contants";
 import { Project } from "@/lib/types";
-import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
+import { validateRequest } from "@/lib/server/lucia/functions/validate-request";
 
 export type CreateProjectRequest = {
   title: string;

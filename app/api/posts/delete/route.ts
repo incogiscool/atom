@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ApiResponse } from "../../auth/signup/route";
 import { ProjectsRef, connectToDatabase } from "@/lib/server/mongo/init";
-import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
+import { validateRequest } from "@/lib/server/lucia/functions/validate-request";
 
 export const DELETE = async (request: NextRequest) => {
   try {

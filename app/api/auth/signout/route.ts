@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ApiResponse } from "../signup/route";
 import { connectToDatabase } from "@/lib/server/mongo/init";
-import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
 import { lucia } from "@/lib/server/lucia/init";
 import { cookies } from "next/headers";
+import { validateRequest } from "@/lib/server/lucia/functions/validate-request";
 
 export const POST = async (request: Request) => {
   try {

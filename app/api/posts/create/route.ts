@@ -5,7 +5,7 @@ import {
   UserDocumentsRef,
   connectToDatabase,
 } from "@/lib/server/mongo/init";
-import { validateRequest } from "@/lib/server/lucia/functions/validateRequest";
+import { validateRequest } from "@/lib/server/lucia/functions/validate-request";
 import { v4 as uuidv4 } from "uuid";
 import { Post } from "@/lib/types";
 import { planDetails } from "@/lib/contants";

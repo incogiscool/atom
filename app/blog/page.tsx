@@ -6,8 +6,6 @@ export const metadata: Metadata = {
   title: "Blog",
 };
 
-export const dynamic = "force-dynamic";
-
 export default function Blog() {
   return (
     <MainContainer>
