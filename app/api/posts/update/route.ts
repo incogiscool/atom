@@ -62,6 +62,8 @@ export const PATCH = async (request: NextRequest) => {
     const { user } = await validateRequest();
     if (!user) throw new Error("Invalid session. Please sign in.");
 
+    if (!project_id) throw new Error("Invalid project id.");
+
     const project = await ProjectsRef.findOne({ _id: project_id });
     if (!project) throw new Error("Could not find project.");
 
