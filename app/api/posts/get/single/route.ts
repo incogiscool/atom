@@ -8,15 +8,13 @@ import { Post } from "@/lib/types";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {
+  const searchParams = request.nextUrl.searchParams;
+  const post_id = searchParams.get("post_id");
+  const authHeader = request.headers.get("Authorization");
+  if (!authHeader) throw new Error("Invalid project key.");
+
   try {
-    const searchParams = request.nextUrl.searchParams;
-
-    const post_id = searchParams.get("post_id");
-
     if (!post_id) throw new Error("Could not find post.");
-
-    const authHeader = request.headers.get("Authorization");
-    if (!authHeader) throw new Error("Invalid project key.");
 
     const [authType, project_key] = authHeader.split(" ");
 

@@ -19,8 +19,9 @@ export type ClientProject = {
 };
 
 export const GET = async (request: Request) => {
+  const authHeader = request.headers.get("Authorization");
+
   try {
-    const authHeader = request.headers.get("Authorization");
     if (!authHeader) throw new Error("Invalid project key.");
 
     const [authType, project_key] = authHeader.split(" ");
