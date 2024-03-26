@@ -5,7 +5,15 @@ meta {
 }
 
 get {
-  url: 
+  url: {{base_url}}/api/posts/get/single?post_id={{post_id}}
   body: none
   auth: none
+}
+
+query {
+  post_id: {{post_id}}
+}
+
+headers {
+  Authorization: Bearer {{project_key}}
 }
