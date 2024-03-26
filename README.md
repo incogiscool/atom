@@ -16,6 +16,22 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Running the Atom-Nextjs SDK locally
+
+Navigate to `/packages/atom-nextjs` and host the package locally:
+
+```bash
+npm link
+```
+
+Then, navigate out, back into the root folder, and connect to the locally hosted package:
+
+```bash
+npm link atom-nextjs
+```
+
+Lastly, you can also restart your code editor as there is a common bug with code editors where it says that the package is not installed.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
