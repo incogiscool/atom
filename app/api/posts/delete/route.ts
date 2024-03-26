@@ -4,11 +4,11 @@ import { ProjectsRef, connectToDatabase } from "@/lib/server/mongo/init";
 import { validateRequest } from "@/lib/server/lucia/functions/validate-request";
 
 export const DELETE = async (request: NextRequest) => {
-  try {
-    const searchParams = request.nextUrl.searchParams;
-    const project_id = searchParams.get("project_id");
-    const post_id = searchParams.get("post_id");
+  const searchParams = request.nextUrl.searchParams;
+  const project_id = searchParams.get("project_id");
+  const post_id = searchParams.get("post_id");
 
+  try {
     await connectToDatabase();
 
     const { user } = await validateRequest();

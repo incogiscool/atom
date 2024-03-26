@@ -6,9 +6,10 @@ import { UserDocument } from "@/lib/types";
 import { redirect } from "next/navigation";
 
 export const GET = async (request: NextRequest) => {
+  const { user } = await validateRequest();
+
   try {
     await connectToDatabase();
-    const { user } = await validateRequest();
 
     if (!user) throw new Error("Invalid session. Please sign in.");
 

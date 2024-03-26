@@ -6,10 +6,11 @@ import { cookies } from "next/headers";
 import { validateRequest } from "@/lib/server/lucia/functions/validate-request";
 
 export const GET = async (request: NextRequest) => {
+  const headers = request.headers;
+  const auth = headers.get("Authorization");
+
   try {
     await connectToDatabase();
-    const headers = request.headers;
-    const auth = headers.get("Authorization");
 
     if (auth) {
       const [auth_type, project_key] = auth.split(" ");

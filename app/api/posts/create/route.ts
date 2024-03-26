@@ -20,9 +20,10 @@ export type CreatePostRequest = {
 };
 
 export const POST = async (request: NextRequest) => {
+  const project_id = request.nextUrl.searchParams.get("project_id");
+
   try {
     const data = (await request.json()) as CreatePostRequest;
-    const project_id = request.nextUrl.searchParams.get("project_id");
 
     if (!project_id) throw new Error("Invalid project id.");
 

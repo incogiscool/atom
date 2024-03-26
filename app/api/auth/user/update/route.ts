@@ -10,12 +10,12 @@ export type UpdateUserRequestParams = {
 };
 
 export const PATCH = async (request: Request) => {
+  const { user } = await validateRequest();
+
   try {
     const body = await request.json();
 
     await connectToDatabase();
-
-    const { user } = await validateRequest();
 
     if (!user) throw new Error("Invalid session. Please sign in.");
 
