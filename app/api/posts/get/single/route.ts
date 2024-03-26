@@ -36,7 +36,7 @@ export const GET = async (request: NextRequest) => {
     const planType = user.plan;
 
     const watermark =
-      "This post was created using [Atom](https://www.atomcms.dev)";
+      "This post was created using [Atom](https://atomcms.vercel.app/)";
 
     if (planType === "single") post.body = post.body + watermark;
 
