@@ -29,7 +29,7 @@ export const maxInputLength = 30;
 export const projectTitleMaxLength = 50;
 
 export const baseAPIRoute =
-  process.env.ENV === "prod"
+  process.env.NEXT_PUBLIC_ENV === "prod"
     ? "https://atomcms.vercel.app/api"
     : "http://localhost:3000/api";
 
