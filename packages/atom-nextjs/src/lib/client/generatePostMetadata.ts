@@ -1,5 +1,5 @@
-import { Metadata } from "next";
-import { getPost } from "./getPost";
+import { Metadata } from 'next';
+import { getPost } from './getPost';
 
 export const generatePostMetadata = async (
   apiKey: string,
@@ -8,12 +8,20 @@ export const generatePostMetadata = async (
   const res = await getPost(apiKey, postId);
   const postData = res.response;
 
+  if (!res.success)
+    return {
+      title: "Couldn't find post.",
+      authors: {
+        name: 'Atom',
+      },
+    };
+
   return {
-    title: postData?.title || "Couldn't find post.",
-    description: postData.teaser || null,
-    keywords: postData?.keywords || null,
+    title: postData.title || "Couldn't find post.",
+    description: postData.teaser,
+    keywords: postData.keywords,
     authors: {
-      name: postData?.author || "Atom",
+      name: postData.author,
     },
   };
 };
