@@ -17,7 +17,7 @@ export const AtomPage = async ({
       {res.success ? (
         <>
           <h1 className="text-4xl font-semibold">{project.title}</h1>
-          <div className="mt-12 flex flex-wrap gap-8">
+          <div className="mt-12 flex items-start justify-end flex-wrap flex-row-reverse gap-8">
             {project.posts.map(post => (
               <AtomPostCard post={post} key={post.id} baseRoute={baseRoute} />
             ))}

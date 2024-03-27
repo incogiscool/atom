@@ -32,7 +32,7 @@ export const Atom = async ({
 
                   {res.image && (
                     <div
-                      className="w-full h-auto rounded-xl"
+                      className="w-full h-auto rounded-xl border"
                       style={{
                         backgroundImage: `url(${res.image})`,
                         width: '100%',
@@ -54,6 +54,7 @@ export const Atom = async ({
               </section>
 
               <section className="mt-12">
+                {/* @ts-ignore Async Server Component */}
                 <AtomBody className="space-y-6" body={res.body} />
               </section>
             </div>
