@@ -25,7 +25,7 @@ export const Atom = async ({
       {apires.success ? (
         <main className={`flex justify-center`}>
           <article className="prose lg:prose-xl w-full">
-            <div className="flex items-center flex-col gap-4 w-full">
+            <div className="flex flex-col gap-4 w-full">
               <section className="space-y-6 w-full">
                 <header className="space-y-4 w-full">
                   <h1 className="text-center">{res.title}</h1>
