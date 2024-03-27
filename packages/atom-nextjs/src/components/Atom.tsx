@@ -1,4 +1,3 @@
-'use server';
 import React from 'react';
 import { AtomBody } from './AtomBody';
 import { getPost } from '../lib/client/getPost';
@@ -24,7 +23,7 @@ export const Atom = async ({
   return (
     <>
       {apires.success ? (
-        <main className="flex justify-center sm:p-20 p-8">
+        <main className={`flex justify-center`}>
           <article className="prose lg:prose-xl w-full">
             <div className="flex items-center flex-col gap-4 w-full">
               <section className="space-y-6 w-full">

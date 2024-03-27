@@ -1,4 +1,3 @@
-'use server';
 import React from 'react';
 import { getProject } from '../lib/client/getProject';
 import { AtomPostCard } from './AtomPostCard';

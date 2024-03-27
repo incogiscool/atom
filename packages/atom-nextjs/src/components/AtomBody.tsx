@@ -1,4 +1,3 @@
-'use server';
 import React from 'react';
 import sanitizeHtml from 'sanitize-html';
 import Markdown from 'react-markdown';
