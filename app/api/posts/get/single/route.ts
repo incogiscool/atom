@@ -35,8 +35,7 @@ export const GET = async (request: NextRequest) => {
     if (!user) throw new Error("Owner user does not exist.");
     const planType = user.plan;
 
-    const watermark =
-      "This post was created using [Atom](https://atomcms.vercel.app/)";
+    const watermark = `\n\nThis post was created using [Atom](https://atomcms.vercel.app/)`;
 
     if (planType === "single") post.body = post.body + watermark;
 
