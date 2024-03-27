@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { LuDot } from 'react-icons/lu';
 import { ClientPost } from '../lib/types';
 
 export const AtomPostCard = ({
@@ -32,7 +31,7 @@ export const AtomPostCard = ({
       <div className="space-y-2">
         <div className="text-sm text-slate-500 flex gap-1 items-center">
           <span>{new Date(post.createdAt).toDateString()}</span>
-          <LuDot fontSize={24} />
+          <span className="text-[24px]">|</span>
           <span>{post.author}</span>
         </div>
         <div className="space-y-1">
