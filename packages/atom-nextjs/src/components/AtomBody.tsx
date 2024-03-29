@@ -1,5 +1,4 @@
 import React from 'react';
-import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeSanitize from 'rehype-sanitize';
 import { compileMDX } from 'next-mdx-remote/rsc';
@@ -15,7 +14,7 @@ export const AtomBody = async ({
     source: body,
     options: {
       mdxOptions: {
-        remarkPlugins: [remarkGfm, remarkMath],
+        remarkPlugins: [remarkMath],
         rehypePlugins: [rehypeSanitize],
       },
     },
