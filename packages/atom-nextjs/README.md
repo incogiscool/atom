@@ -8,10 +8,10 @@ A video version of this tutorial is available [here]()
 
 ## Get Started
 
-Install the following NPM package
+Install the following NPM packages
 
 ```
-npm i atom-nextjs@latest
+npm i atom-nextjs@latest @tailwindcss/typography
 ```
 
 ## Set up your routes

@@ -19,7 +19,7 @@ export const Navbar = async () => {
   const navOptions = [
     {
       title: "Get started",
-      link: "/blog/id-rigthhere",
+      link: "/blog/ed29f2f3-8482-4038-a3e0-71ebaa24bf6c",
     },
     {
       title: "Pricing",

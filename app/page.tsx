@@ -18,7 +18,7 @@ export const metadata = {
 export default function Blog() {
   return (
     <MyAppContainer>
-      <AtomPage baseRoute="/blog" apiKey={process.env.ATOM_PROJECT_KEY!} />
+      <AtomPage baseRoute="/blog" projectKey={process.env.ATOM_PROJECT_KEY!} />
     </MyAppContainer>
   );
 }
@@ -43,7 +43,7 @@ export const generateMetadata = async ({ params }: BlogParams) => {
 export default async function BlogPage({ params }: BlogParams) {
   return (
     <MyAppContainer>
-      <Atom apiKey={process.env.ATOM_PROJECT_KEY!} postId={params.id} />
+      <Atom projectKey={process.env.ATOM_PROJECT_KEY!} postId={params.id} />
     </MyAppContainer>
   );
 }
