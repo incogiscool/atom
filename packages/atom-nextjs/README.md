@@ -4,7 +4,7 @@ This package is created for Atom CMS. This SDK currently supports NextJS 13 App 
 
 **Currently, Atom does not support websites with dark mode.**
 
-A video version of this tutorial is available [here]()
+A video version of this tutorial is available [here](https://www.loom.com/share/53cae6d731514a2da7affef175e1ebdc?sid=4f7f3e24-60d3-4143-9395-ec42f14c9310)
 
 ## Get Started
 
