@@ -150,7 +150,7 @@ const Home = () => {
           ))}
         </div>
       </section>
-      <section className="text-center items-center justify-center flex flex-col">
+      {/* <section className="text-center items-center justify-center flex flex-col">
         <h1 className="text-4xl font-semibold">Not convinced yet?</h1>
         <p className="text-slate-500">See what others think about Atom </p>
         <div className="flex flex-wrap gap-12 justify-center items-start text-left">
@@ -158,7 +158,7 @@ const Home = () => {
             <Tweet key={id} id={id} />
           ))}
         </div>
-      </section>
+      </section> */}
       <section className="items-center flex-col flex justify-center">
         <div className="flex items-center justify-center gap-12  p-10 rounded-lg border">
           <div>
