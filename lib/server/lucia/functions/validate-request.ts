@@ -11,6 +11,7 @@ export const validateRequest = cache(
     console.log("validating request");
 
     const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null;
+    console.log("got cookies session id, sessionId: ", sessionId);
     if (!sessionId) {
       return {
         user: null,
@@ -18,9 +19,15 @@ export const validateRequest = cache(
       };
     }
 
+    console.log("validating session");
     const result = await lucia.validateSession(sessionId);
+
+    console.log("validated session");
+
     // next.js throws when you attempt to set cookie when rendering page
     try {
+      console.log("setting session cookie");
+      console.log(result.session, result.session?.userId);
       if (result.session && result.session.fresh) {
         const sessionCookie = lucia.createSessionCookie(result.session.id);
         cookies().set(
@@ -29,7 +36,9 @@ export const validateRequest = cache(
           sessionCookie.attributes
         );
       }
+
       if (!result.session) {
+        console.log("creating new blank session");
         const sessionCookie = lucia.createBlankSessionCookie();
         cookies().set(
           sessionCookie.name,
