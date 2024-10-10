@@ -3,11 +3,14 @@ import { cache } from "react";
 
 import type { Session, User } from "lucia";
 import { lucia } from "../init";
+import { connectToDatabase } from "../../mongo/init";
 
 export const validateRequest = cache(
   async (): Promise<
     { user: User; session: Session } | { user: null; session: null }
   > => {
+    await connectToDatabase();
+
     console.log("validating request");
 
     const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null;
