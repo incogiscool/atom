@@ -3,9 +3,7 @@ import { ApiResponse } from "../../signup/route";
 import { validateRequest } from "@/lib/server/lucia/functions/validate-request";
 import { UserDocumentsRef, connectToDatabase } from "@/lib/server/mongo/init";
 import { UserDocument } from "@/lib/types";
-
-export const maxDuration = 30; // 5 seconds
-export const dynamic = "force-dynamic";
+export const maxDuration = 15; // 15 seconds
 
 export const GET = async (request: NextRequest) => {
   const { user } = await validateRequest();

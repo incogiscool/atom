@@ -26,12 +26,16 @@ Inside of your `app/blog/page.tsx` directory, import the package, and render the
 // app/blog/page.tsx
 
 import { AtomPage } from 'atom-nextjs';
+import { cookies } from 'next/headers';
 
 export const metadata = {
   title: 'Blog',
 };
 
 export default function Blog() {
+  // Opt of caching using cookies
+  const _cookies = cookies();
+
   return (
     <AtomPage baseRoute="/blog" projectKey={process.env.ATOM_PROJECT_KEY!} />
   );
@@ -45,12 +49,16 @@ export default function Blog() {
 
 import { AtomPage } from 'atom-nextjs';
 import { MyAppContainer } from '@/...';
+import { cookies } from 'next/headers';
 
 export const metadata = {
   title: 'Blog',
 };
 
 export default function Blog() {
+  // Opt of caching using cookies
+  const _cookies = cookies();
+
   return (
     <MyAppContainer>
       <AtomPage baseRoute="/blog" projectKey={process.env.ATOM_PROJECT_KEY!} />
@@ -125,4 +133,29 @@ module.exports = {
   },
   plugins: [...require('@tailwindcss/typography')],
 };
+```
+
+## Caching
+
+NextJS automatically caches pages for you. This can get a little prolematic when dealing with public pages that have dynamic content - this is why we add the `cookies` function to the page. If you want to cache this page, you can remove the `cookies` function.
+
+```tsx
+// app/blog/page.tsx
+
+import { AtomPage } from 'atom-nextjs';
+import { Metadata } from 'next';
+import { cookies } from 'next/headers';
+
+export const metadata: Metadata = {
+  title: 'Blog',
+};
+
+export default function Blog() {
+  // Commented cookies function to enable caching. NOTE: This may cause the UI to not update after a post is published or updated.
+  // const _cookies = cookies();
+
+  return (
+    <AtomPage baseRoute="/blog" projectKey={process.env.ATOM_PROJECT_KEY!} />
+  );
+}
 ```
