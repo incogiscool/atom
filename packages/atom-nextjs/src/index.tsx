@@ -5,6 +5,8 @@ import { AtomPostCard } from './components/AtomPostCard';
 import { generatePostMetadata } from './lib/client/generatePostMetadata';
 import { getPost } from './lib/client/getPost';
 import { getProject } from './lib/client/getProject';
+import { AtomLoadingSkeleton } from './components/AtomLoadingSkeleton';
+import { AtomArticleSkeleton } from './components/AtomArticleSkeleton';
 
 export {
   Atom,
@@ -14,4 +16,6 @@ export {
   generatePostMetadata,
   getPost,
   getProject,
+  AtomLoadingSkeleton,
+  AtomArticleSkeleton,
 };
