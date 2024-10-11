@@ -135,6 +135,63 @@ module.exports = {
 };
 ```
 
+## Loading State
+
+Atom also supports having a loading state while the page is loading. To do this, you can import the `AtomLoadingSkeleton` component from the package and add it a `Suspense` component.
+
+```tsx
+// app/blog/page.tsx
+
+import { AtomLoadingSkeleton, AtomPage } from 'atom-nextjs';
+import { Metadata } from 'next';
+import { cookies } from 'next/headers';
+import { Suspense } from 'react';
+
+export const metadata: Metadata = {
+  title: 'Blog',
+};
+
+export default function Blog() {
+  // Opt of caching using cookies
+  const _cookies = cookies();
+
+  return (
+    <Suspense fallback={<AtomLoadingSkeleton />}>
+      <AtomPage baseRoute="/blog" projectKey={process.env.ATOM_PROJECT_KEY!} />
+    </Suspense>
+  );
+}
+```
+
+To add it to your article page aswell, you can use the `AtomArticleSkeleton` component.
+
+```tsx
+// app/blog/[id]/page.tsx
+
+import { Atom, generatePostMetadatam, ArticleSkeleton } from 'atom-nextjs';
+import { MyAppContainer } from '@/...';
+import { Suspense } from 'react';
+
+export type BlogParams = { params: { id: string } };
+
+export const generateMetadata = async ({ params }: BlogParams) => {
+  const metadata = await generatePostMetadata(
+    process.env.ATOM_PROJECT_KEY!,
+    params.id
+  );
+
+  return metadata;
+};
+
+export default async function BlogPage({ params }: BlogParams) {
+  return (
+    <Suspense fallback={<AtomArticleSkeleton />}>
+      <Atom projectKey={process.env.ATOM_PROJECT_KEY!} postId={params.id} />
+    </Suspense>
+  );
+}
+```
+
 ## Caching
 
 NextJS automatically caches pages for you. This can get a little prolematic when dealing with public pages that have dynamic content - this is why we add the `cookies` function to the page. If you want to cache this page, you can remove the `cookies` function.
