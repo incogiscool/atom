@@ -2,7 +2,7 @@ import { GoDatabase } from "react-icons/go";
 import { IoSettingsOutline, IoWalletOutline } from "react-icons/io5";
 import { Plan, PlanDetailsPlan } from "./types";
 
-export const plans = ["single", "business"] as const;
+export const plans = ["personal", "startup", "business"] as const;
 
 export const navOptions = [
   {
@@ -37,15 +37,15 @@ export const mongoDBURI = process.env.MONGO_DB_URI;
 
 export const planDetails: PlanDetailsPlan[] = [
   {
-    title: "Single",
-    id: "single",
+    title: "Personal",
+    id: "personal",
     price: null,
     description: "For writers who are just getting started.",
     max_docs: 100,
     max_body_length: 10000,
     max_projects: 2,
     features: [
-      "2 projects",
+      "1 project",
       "100 posts per project",
       "10,000 character body length",
     ],
@@ -53,9 +53,27 @@ export const planDetails: PlanDetailsPlan[] = [
     disabled: false,
   },
   {
+    title: "Startup",
+    id: "startup",
+    price: 3.99,
+    description: "For startups who want to build their own blog.",
+    max_docs: 1000,
+    max_body_length: 100000,
+    max_projects: 3,
+    features: [
+      "3 projects",
+      "1,000 posts per project",
+      "25,000 character body length",
+      "No watermark",
+      "Dedicated support",
+    ],
+    active: false,
+    disabled: true,
+  },
+  {
     title: "Business",
     id: "business",
-    price: 12,
+    price: 11.99,
     description: "For established businesses and startups.",
     max_docs: 2500,
     max_body_length: 500000,
