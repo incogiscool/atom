@@ -25,6 +25,8 @@ export type ClientProject = {
   title: string;
   posts: ClientPost[];
   id: string;
+  updatedAt: Date;
+  createdAt: Date;
 };
 export type ApiResponse<T = null> = {
   response: T;

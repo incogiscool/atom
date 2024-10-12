@@ -192,6 +192,30 @@ export default async function BlogPage({ params }: BlogParams) {
 }
 ```
 
+## Sitemap
+
+Sitemaps are very important for SEO. To generate a sitemap, you can use the `generateSitemap` function from the package.
+
+```tsx
+// app/sitemap.ts
+
+import { MetadataRoute } from 'next';
+import { generateSitemap } from 'atom-nextjs';
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const routes = await generateSitemap(
+    process.env.ATOM_PROJECT_KEY!,
+    // Your blog route
+    'https://atomcms.vercel.app/blog'
+  );
+
+  return [
+    // Your other sitemap routes
+    ...routes,
+  ];
+}
+```
+
 ## Caching
 
 NextJS automatically caches pages for you. This can get a little prolematic when dealing with public pages that have dynamic content - this is why we add the `cookies` function to the page. If you want to cache this page, you can remove the `cookies` function.

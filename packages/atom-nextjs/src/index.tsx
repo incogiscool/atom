@@ -7,6 +7,7 @@ import { getPost } from './lib/client/getPost';
 import { getProject } from './lib/client/getProject';
 import { AtomLoadingSkeleton } from './components/AtomLoadingSkeleton';
 import { AtomArticleSkeleton } from './components/AtomArticleSkeleton';
+import { generateSitemap } from './lib/client/generateSitemap';
 
 export {
   Atom,
@@ -18,4 +19,5 @@ export {
   getProject,
   AtomLoadingSkeleton,
   AtomArticleSkeleton,
+  generateSitemap,
 };
