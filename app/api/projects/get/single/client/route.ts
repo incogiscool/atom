@@ -16,6 +16,8 @@ export type ClientProject = {
   title: string;
   posts: ClientPost[];
   id: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export const GET = async (request: Request) => {
@@ -49,6 +51,8 @@ export const GET = async (request: Request) => {
       title: project.title,
       id: project._id,
       posts: clientPosts,
+      createdAt: project.createdAt,
+      updatedAt: project.updatedAt,
     };
 
     return NextResponse.json<ApiResponse<ClientProject>>({
@@ -56,10 +60,11 @@ export const GET = async (request: Request) => {
       success: true,
       message: "Successfuly fetched posts.",
     });
-  } catch (err: any) {
+  } catch (err) {
     console.log(err);
 
     return NextResponse.json<ApiResponse>({
+      // @ts-expect-error 'err' is of type 'unknown'
       message: err.message || err,
       success: false,
       response: null,

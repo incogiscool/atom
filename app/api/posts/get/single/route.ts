@@ -44,12 +44,13 @@ export const GET = async (request: NextRequest) => {
       success: true,
       message: "Successfuly fetched post.",
     });
-  } catch (err: any) {
+  } catch (err) {
     console.log(err);
 
     return NextResponse.json<ApiResponse>({
       response: null,
       success: false,
+      // @ts-expect-error 'err' is of type 'unknown'
       message: err.message || err,
     });
   }
