@@ -11,9 +11,13 @@ KEEP SERVERSIDE RENDERING BECAUSE OF API KEY
 export const Atom = async ({
   projectKey,
   postId,
+  remarkPlugins,
+  rehypePlugins,
 }: {
   projectKey: string;
   postId: string;
+  remarkPlugins?: any[];
+  rehypePlugins?: any[];
 }) => {
   const apires = await getPost(projectKey, postId);
   const res = apires.response;
@@ -55,7 +59,12 @@ export const Atom = async ({
 
               <section className="mt-12">
                 {/* @ts-ignore Async Server Component */}
-                <AtomBody className="space-y-6" body={res.body} />
+                <AtomBody
+                  className="space-y-6"
+                  body={res.body}
+                  remarkPlugins={remarkPlugins}
+                  rehypePlugins={rehypePlugins}
+                />
               </section>
             </div>
           </article>

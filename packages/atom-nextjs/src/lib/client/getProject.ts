@@ -1,20 +1,14 @@
-import axios from 'axios';
 import { ApiResponse, ClientProject } from '../types';
 import { baseAPIRoute } from '../constants';
 
 export const getProject = async (projectKey: string) => {
-  const res = (
-    await axios.get<ApiResponse<ClientProject>>(
-      `${baseAPIRoute}/projects/get/single/client`,
-      {
-        headers: {
-          Authorization: `Bearer ${projectKey}`,
-        },
-      }
-    )
-  ).data;
+  const res = await fetch(`${baseAPIRoute}/projects/get/single/client`, {
+    headers: {
+      Authorization: `Bearer ${projectKey}`,
+    },
+  });
 
-  // if (!res.success) throw new Error(res.message || "Unknown error.");
+  const data = (await res.json()) as ApiResponse<ClientProject>;
 
-  return res;
+  return data;
 };
