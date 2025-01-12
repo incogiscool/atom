@@ -5,9 +5,11 @@ import { AtomPostCard } from './AtomPostCard';
 export const AtomPage = async ({
   projectKey,
   baseRoute,
+  title = true,
 }: {
   projectKey: string;
   baseRoute: string;
+  title?: boolean;
 }) => {
   const res = await getProject(projectKey);
   const project = res.response;
@@ -16,8 +18,11 @@ export const AtomPage = async ({
     <div>
       {res.success ? (
         <>
-          <h1 className="text-4xl font-semibold">{project.title}</h1>
-          <div className="mt-12 flex items-start justify-end flex-wrap flex-row-reverse gap-8">
+          {title && <h1 className="text-4xl font-semibold">{project.title}</h1>}
+          <div
+            className={`${title &&
+              'mt-6'} flex items-start justify-end flex-wrap flex-row-reverse gap-8`}
+          >
             {project.posts.map(post => (
               <AtomPostCard post={post} key={post.id} baseRoute={baseRoute} />
             ))}
