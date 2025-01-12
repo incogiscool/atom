@@ -88,6 +88,9 @@ export const generateMetadata = async ({ params }: BlogParams) => {
 };
 
 export default async function BlogPage({ params }: BlogParams) {
+  // Opt of caching using cookies
+  const _cookies = cookies();
+
   return <Atom projectKey={process.env.ATOM_PROJECT_KEY!} postId={params.id} />;
 }
 ```
@@ -112,6 +115,10 @@ export const generateMetadata = async ({ params }: BlogParams) => {
 };
 
 export default async function BlogPage({ params }: BlogParams) {
+  // Opt of caching using cookies
+  // Opt of caching using cookies
+  const _cookies = cookies();
+
   return (
     <MyAppContainer>
       <Atom projectKey={process.env.ATOM_PROJECT_KEY!} postId={params.id} />
@@ -184,6 +191,9 @@ export const generateMetadata = async ({ params }: BlogParams) => {
 };
 
 export default async function BlogPage({ params }: BlogParams) {
+  // Opt of caching using cookies
+  const _cookies = cookies();
+
   return (
     <Suspense fallback={<AtomArticleSkeleton />}>
       <Atom projectKey={process.env.ATOM_PROJECT_KEY!} postId={params.id} />

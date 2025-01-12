@@ -92,7 +92,7 @@ const Home = () => {
           <NpmPackageComponent />
           {/* <Button variant={"outline"}>See demo</Button> */}
         </div>
-        <div className="mt-12 relative">
+        <div className="mt-12 invisible md:visible relative">
           <iframe
             src="https://demo.arcade.software/HoopYQB3bkPgqxaXQhkt?embed&show_copy_link=true"
             title="Atom - The NextJS CMS"
