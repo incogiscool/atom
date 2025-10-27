@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectToDatabase } from "./lib/server/mongo/init";
 import { redirect } from "next/navigation";
-import { ratelimit } from "./lib/server/redis/init";
+// import { ratelimit } from "./lib/server/redis/init";
 import { ApiResponse } from "./app/api/auth/signup/route";
 
 // This function can be marked `async` if using `await` inside
@@ -17,13 +17,12 @@ export default async function middleware(request: NextRequest) {
   // );
 
   //add rate limiting and protect paths
-  const ip = request.ip ?? "127.0.0.1";
+  // const ip = request.ip ?? "127.0.0.1";
 
   if (requestPath.startsWith("/api")) {
     try {
-      const { success } = await ratelimit.limit(ip);
-
-      if (!success) throw new Error("Too many requests.");
+      // const { success } = await ratelimit.limit(ip);
+      // if (!success) throw new Error("Too many requests.");
     } catch (err: any) {
       console.log(err);
 

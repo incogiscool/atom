@@ -11,6 +11,7 @@ import mongoose from "mongoose";
 import { planDetails, projectTitleMaxLength } from "@/lib/contants";
 import { Project } from "@/lib/types";
 import { validateRequest } from "@/lib/server/lucia/functions/validate-request";
+import { CreateProjectSchema } from "@/lib/server/validators/schemas";
 
 export type CreateProjectRequest = {
   title: string;
@@ -18,10 +19,8 @@ export type CreateProjectRequest = {
 
 export const POST = async (request: Request) => {
   try {
-    const { title } = (await request.json()) as CreateProjectRequest;
-
-    if (!title || title.length > projectTitleMaxLength || title === "")
-      throw new Error("Invalid title.");
+    const rawData = await request.json();
+    const data = CreateProjectSchema.parse(rawData);
 
     await connectToDatabase();
 
@@ -54,7 +53,7 @@ export const POST = async (request: Request) => {
         [
           {
             _id: project_id,
-            title,
+            title: data.title,
             posts: [],
             project_key,
             creator_uid: user.id,
@@ -70,7 +69,7 @@ export const POST = async (request: Request) => {
         {
           $push: {
             projects: {
-              title,
+              title: data.title,
               id: project_id,
               createdAt: project.createdAt,
               updatedAt: project.updatedAt,

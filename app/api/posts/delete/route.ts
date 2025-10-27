@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { ApiResponse } from "../../auth/signup/route";
 import { ProjectsRef, connectToDatabase } from "@/lib/server/mongo/init";
 import { validateRequest } from "@/lib/server/lucia/functions/validate-request";
+import { DeletePostSchema } from "@/lib/server/validators/schemas";
 
 export const DELETE = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
@@ -9,27 +10,28 @@ export const DELETE = async (request: NextRequest) => {
   const post_id = searchParams.get("post_id");
 
   try {
+    const data = DeletePostSchema.parse({ project_id, post_id });
+
     await connectToDatabase();
 
     const { user } = await validateRequest();
     if (!user) throw new Error("Invalid session. Please sign in.");
-    if (!project_id) throw new Error("Invalid project id.");
 
-    const project = await ProjectsRef.findOne({ _id: project_id });
+    const project = await ProjectsRef.findOne({ _id: data.project_id });
     if (!project) throw new Error("Could not find project.");
 
     const isAuth = project.creator_uid === user.id;
 
     if (!isAuth) throw new Error("Not authorized.");
 
-    const post = project.posts.find((post) => post.id === post_id);
+    const post = project.posts.find((post) => post.id === data.post_id);
     if (!post) throw new Error("Could not find post.");
 
     await ProjectsRef.updateOne(
-      { _id: project_id },
+      { _id: data.project_id },
       {
         $pull: {
-          posts: { id: post_id },
+          posts: { id: data.post_id },
         },
       }
     );

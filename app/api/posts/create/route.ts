@@ -9,6 +9,7 @@ import { validateRequest } from "@/lib/server/lucia/functions/validate-request";
 import { v4 as uuidv4 } from "uuid";
 import { Post } from "@/lib/types";
 import { planDetails } from "@/lib/contants";
+import { CreatePostSchema } from "@/lib/server/validators/schemas";
 
 export type CreatePostRequest = {
   title: string;
@@ -23,7 +24,8 @@ export const POST = async (request: NextRequest) => {
   const project_id = request.nextUrl.searchParams.get("project_id");
 
   try {
-    const data = (await request.json()) as CreatePostRequest;
+    const rawData = await request.json();
+    const data = CreatePostSchema.parse(rawData);
 
     if (!project_id) throw new Error("Invalid project id.");
 

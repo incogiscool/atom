@@ -4,17 +4,24 @@ import { ApiResponse } from "@/app/api/auth/signup/route";
 import { Project } from "@/lib/types";
 import { cookies } from "next/headers";
 import { validateRequest } from "@/lib/server/lucia/functions/validate-request";
+import { GetProjectSchema } from "@/lib/server/validators/schemas";
 
 export const GET = async (request: NextRequest) => {
   const headers = request.headers;
   const auth = headers.get("Authorization");
+  const project_id = request.nextUrl.searchParams.get("project_id");
 
   try {
     await connectToDatabase();
 
     if (auth) {
       const [auth_type, project_key] = auth.split(" ");
-      const project = await ProjectsRef.findOne({ project_key });
+
+      const data = GetProjectSchema.parse({ project_key });
+
+      const project = await ProjectsRef.findOne({
+        project_key: data.project_key,
+      });
       if (!project) throw new Error("Invalid project key.");
 
       return NextResponse.json<ApiResponse<Project>>({
@@ -23,13 +30,13 @@ export const GET = async (request: NextRequest) => {
         message: "Successfuly fetched posts.",
       });
     } else {
-      const project_id = request.nextUrl.searchParams.get("project_id");
+      const data = GetProjectSchema.parse({ project_id });
+
       const { user } = await validateRequest();
 
       if (!user) throw new Error("Invalid session. Please sign in.");
-      if (!project_id) throw new Error("Invalid project id.");
 
-      const project = await ProjectsRef.findOne({ _id: project_id });
+      const project = await ProjectsRef.findOne({ _id: data.project_id });
       if (!project) throw new Error("Invalid project id.");
 
       const isAuth = project.creator_uid === user.id;

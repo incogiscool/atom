@@ -6,28 +6,32 @@ import {
 } from "@/lib/server/mongo/init";
 import { Post } from "@/lib/types";
 import { NextRequest, NextResponse } from "next/server";
+import { GetPostSchema } from "@/lib/server/validators/schemas";
 
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
   const post_id = searchParams.get("post_id");
   const authHeader = request.headers.get("Authorization");
-  if (!authHeader) throw new Error("Invalid project key.");
 
   try {
+    if (!authHeader) throw new Error("Invalid project key.");
     if (!post_id) throw new Error("Could not find post.");
 
     const [authType, project_key] = authHeader.split(" ");
 
+    const data = GetPostSchema.parse({ post_id, project_key });
+
     if (authType !== "Bearer") throw new Error("Must be bearer token.");
-    if (!project_key) throw new Error("Invalid project key.");
 
     await connectToDatabase();
 
-    const project = await ProjectsRef.findOne({ project_key });
+    const project = await ProjectsRef.findOne({
+      project_key: data.project_key,
+    });
 
     if (!project) throw new Error("Could not find project.");
 
-    let post = project.posts.find((post) => post.id === post_id);
+    let post = project.posts.find((post) => post.id === data.post_id);
 
     if (!post) throw new Error("Could not find post.");
 

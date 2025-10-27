@@ -7,6 +7,7 @@ import {
   connectToDatabase,
 } from "@/lib/server/mongo/init";
 import mongoose from "mongoose";
+import { DeleteProjectSchema } from "@/lib/server/validators/schemas";
 
 export type DeleteProjectRequestParams = {
   project_id: string;
@@ -19,10 +20,11 @@ export const DELETE = async (request: NextRequest) => {
     const { user } = await validateRequest();
     const project_id = request.nextUrl.searchParams.get("project_id");
 
-    if (!user) throw new Error("Invalid session. Please sign in.");
-    if (!project_id) throw new Error("Invalid project id.");
+    const data = DeleteProjectSchema.parse({ project_id });
 
-    const project = await ProjectsRef.findOne({ _id: project_id });
+    if (!user) throw new Error("Invalid session. Please sign in.");
+
+    const project = await ProjectsRef.findOne({ _id: data.project_id });
     if (!project) throw new Error("Invalid project id.");
 
     const isAuth = project.creator_uid === user.id;
@@ -33,14 +35,14 @@ export const DELETE = async (request: NextRequest) => {
 
     await mongooseSession.withTransaction(async () => {
       await ProjectsRef.deleteOne(
-        { _id: project_id },
+        { _id: data.project_id },
         { session: mongooseSession }
       );
       await UserDocumentsRef.updateOne(
         { _id: user.id },
         {
           $pull: {
-            projects: { id: project_id },
+            projects: { id: data.project_id },
           },
         },
         { session: mongooseSession }

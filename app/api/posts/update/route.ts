@@ -11,6 +11,7 @@ import {
   planDetails,
   projectTitleMaxLength,
 } from "@/lib/contants";
+import { UpdatePostSchema } from "@/lib/server/validators/schemas";
 
 export type UpdatePostRequestParams = {
   title?: string;
@@ -37,41 +38,27 @@ export const PATCH = async (request: NextRequest) => {
     const searchParams = request.nextUrl.searchParams;
     const project_id = searchParams.get("project_id");
     const post_id = searchParams.get("post_id");
-    const { title, author, body, teaser, keywords, image } =
-      (await request.json()) as UpdatePostRequestParams;
+    const rawData = await request.json();
+
+    const data = UpdatePostSchema.parse({
+      ...rawData,
+      project_id,
+      post_id,
+    });
 
     await connectToDatabase();
-
-    if (title && title.length > projectTitleMaxLength)
-      throw new Error(
-        `Title cannot be longer than ${projectTitleMaxLength} characters.`
-      );
-
-    if (author && author.length > maxInputLength) {
-      throw new Error("Invalid author.");
-    }
-
-    if (keywords && keywords.length > maxInputLength) {
-      throw new Error("Invalid keywords.");
-    }
-
-    if (teaser && teaser.length > 100) {
-      throw new Error("Invalid teaser.");
-    }
 
     const { user } = await validateRequest();
     if (!user) throw new Error("Invalid session. Please sign in.");
 
-    if (!project_id) throw new Error("Invalid project id.");
-
-    const project = await ProjectsRef.findOne({ _id: project_id });
+    const project = await ProjectsRef.findOne({ _id: data.project_id });
     if (!project) throw new Error("Could not find project.");
 
     const isAuth = project.creator_uid === user.id;
 
     if (!isAuth) throw new Error("Not authorized.");
 
-    const post = project.posts.find((post) => post.id === post_id);
+    const post = project.posts.find((p: any) => p.id === data.post_id);
 
     if (!post) throw new Error("Could not find post.");
 
@@ -83,45 +70,40 @@ export const PATCH = async (request: NextRequest) => {
 
     if (!userPlan) throw new Error("Invalid plan.");
 
-    if (body && body.length > userPlan.max_body_length)
+    if (data.body && data.body.length > userPlan.max_body_length)
       throw new Error(
         `Body cannot be more than ${userPlan.max_body_length} characters.`
       );
 
     const filteredBody: UpdatePostRequestParams = {};
 
-    if (title) {
-      filteredBody.title = title;
+    if (data.title) {
+      filteredBody.title = data.title;
     }
-    if (author) {
-      filteredBody.author = author;
+    if (data.author) {
+      filteredBody.author = data.author;
     }
-    if (body) {
-      filteredBody.body = body;
+    if (data.body) {
+      filteredBody.body = data.body;
     }
-    if (teaser) {
-      filteredBody.teaser = teaser;
+    if (data.teaser) {
+      filteredBody.teaser = data.teaser;
     }
-    if (keywords) {
-      filteredBody.keywords = keywords;
+    if (data.keywords) {
+      filteredBody.keywords = data.keywords;
     }
-    if (image) {
-      filteredBody.image = image;
+    if (data.image) {
+      filteredBody.image = data.image;
     }
 
     const formattedBody = formatBody(filteredBody, "posts");
 
-    const _post = await ProjectsRef.updateOne(
-      { _id: project_id, "posts.id": post_id },
-      // {
-      //   $set: filteredBody,
-      // }
+    await ProjectsRef.updateOne(
+      { _id: data.project_id, "posts.id": data.post_id },
       {
         $set: formattedBody,
       }
     );
-
-    // console.log(_post);
 
     return NextResponse.json<ApiResponse>({
       response: null,
