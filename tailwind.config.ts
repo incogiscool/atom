@@ -23,6 +23,7 @@ const config = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
     "./node_modules/atom-nextjs/src/components/*.{ts,tsx}",
+    "./node_modules/agentpress-nextjs/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {

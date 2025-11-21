@@ -1,4 +1,4 @@
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { cache } from "react";
 
 import type { Session, User } from "lucia";
@@ -13,7 +13,14 @@ export const validateRequest = cache(
 
     console.log("validating request");
 
-    const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null;
+    const sessionIdCookies =
+      cookies().get(lucia.sessionCookieName)?.value ?? null;
+    const sessionIdHeaders = lucia.readBearerToken(
+      headers().get("Authorization") || ""
+    );
+
+    const sessionId = sessionIdCookies ?? sessionIdHeaders;
+
     console.log("got cookies session id, sessionId: ", sessionId);
     if (!sessionId) {
       return {

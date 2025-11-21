@@ -17,8 +17,15 @@ import {
 import { Input } from "@/components/ui/input";
 import { projectTitleMaxLength } from "@/lib/contants";
 import { AppContainer } from "@/components/containers/AppContainer";
+import { AgentpressChat } from "agentpress-nextjs";
 
-export function ProjectPage({ userDocument }: { userDocument: UserDocument }) {
+export function ProjectPage({
+  userDocument,
+  authToken,
+}: {
+  userDocument: UserDocument;
+  authToken: string | undefined;
+}) {
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -60,6 +67,12 @@ export function ProjectPage({ userDocument }: { userDocument: UserDocument }) {
       <Button className="w-full mt-4" onClick={() => setDialogOpen(true)}>
         Create Project
       </Button>
+
+      <AgentpressChat
+        projectId="68fffe798322a5f1ee709524"
+        authToken={authToken}
+        onToolCall={router.refresh}
+      />
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent>

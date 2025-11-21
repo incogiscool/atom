@@ -44,6 +44,7 @@
     "@uiw/react-md-editor": "^4.0.4",
     "@upstash/ratelimit": "^1.0.1",
     "@upstash/redis": "^1.28.4",
+    "agentpress-nextjs": "^0.1.4",
     "argon2": "^0.40.1",
     "atom-nextjs": "^0.3.0",
     "axios": "^1.6.7",
@@ -74,7 +75,7 @@
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "uuid": "^9.0.1",
-    "zod": "^3.22.4",
+    "zod": "^4.1.12",
     "zustand": "^4.5.0"
   },
   "devDependencies": {
