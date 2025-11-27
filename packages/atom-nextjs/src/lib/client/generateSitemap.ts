@@ -8,19 +8,20 @@ export const generateSitemap = async (
 
   const project = response.response;
 
-  const routes = project.posts
-    .map(post => ({
-      url: `${blogRoute}/${post.id}`,
-      lastModified: new Date(post.updatedAt),
-      priority: 0.5,
-    }))
-    .concat([
-      {
-        url: blogRoute,
-        lastModified: project.updatedAt,
-        priority: 0.6,
-      },
-    ]);
+  const routes =
+    project?.posts
+      .map((post) => ({
+        url: `${blogRoute}/${post.id}`,
+        lastModified: new Date(post.updatedAt),
+        priority: 0.5,
+      }))
+      .concat([
+        {
+          url: blogRoute,
+          lastModified: project.updatedAt,
+          priority: 0.6,
+        },
+      ]) ?? [];
 
   return routes;
 };
