@@ -30,7 +30,7 @@ export const projectTitleMaxLength = 50;
 
 export const baseAPIRoute =
   process.env.NEXT_PUBLIC_ENV === "prod"
-    ? "https://atomcms.vercel.app/api"
+    ? "https://cmsatom.netlify.app/api"
     : "http://localhost:3000/api";
 
 export const mongoDBURI = process.env.MONGO_DB_URI;
